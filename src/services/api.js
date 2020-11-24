@@ -1,4 +1,4 @@
-let apiMLB = 'https://api.mercadolibre.com/sites/MLB/';
+const apiMLB = 'https://api.mercadolibre.com/sites/MLB/';
 
 export async function getCategories() {
   try {
@@ -24,8 +24,9 @@ export async function getCategories() {
 // }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
+  const endPoint = `${apiMLB}search?category=${categoryId}&q=${query}`;
   try {
-    const requestCategoryAndQuery = await fetch(`${apiMLB}search?category=${categoryId}&q=${query}`);
+    const requestCategoryAndQuery = await fetch(endPoint);
     const responseCategoryAndQuery = await requestCategoryAndQuery.json();
     return responseCategoryAndQuery;
   } catch (error) {

@@ -11,6 +11,8 @@ class Home extends React.Component {
     this.state = {
       categories: [],
     }
+
+    this.renderCategoriesList = this.renderCategoriesList.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +24,19 @@ class Home extends React.Component {
     this.setState({
       categories: categoriesList,
     });
+  }
+
+  renderCategoriesList() {
+    const { categories } = this.state;
+
+    return (
+      <div>
+        <p className="categories-list">Categorias</p>
+        <ul className="categories-list">
+          {categories.map((category) => <CategoriesList key={category.id} category={category} />)}
+        </ul>
+      </div>
+    );
   }
 
   render() {
@@ -42,13 +57,7 @@ class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
         </div>
-
-        <div>
-          <p className="categories-list">Categorias</p>
-          <ul className="categories-list">
-            {categories.map((category) => <CategoriesList key={category.id} category={category} />)}
-          </ul>
-        </div>
+        {(categories.length !== 0) ? this.renderCategoriesList(): <p>Loading...</p>}
       </div>
     );
   }

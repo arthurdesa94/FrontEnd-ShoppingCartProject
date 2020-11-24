@@ -38,3 +38,11 @@ body {
 .search-form button:hover {
   background: #0b7dda;
 }
+
+.categories-list {
+  text-align: left;
+}
+
+p.categories-list {
+  font-size: x-large;
+}

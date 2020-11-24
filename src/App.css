@@ -8,3 +8,33 @@ body {
   text-align: center;
   line-height: 30px;
 }
+
+.search-form input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-radius: 15px;
+  float: left;
+  width: 75%;
+  background: #f1f1f1;
+  margin-left: 20px;
+}
+
+.search-form button {
+  float: left;
+  border-radius: 15px;
+  width: 15%;
+  height: 42px;
+  padding: 10px;
+  margin: 0px 20px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background: #0b7dda;
+}

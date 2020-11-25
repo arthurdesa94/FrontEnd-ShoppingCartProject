@@ -13,6 +13,7 @@ class Home extends React.Component {
     }
 
     this.renderCategoriesList = this.renderCategoriesList.bind(this);
+    this.fetchCategories = this.fetchCategories.bind(this);
   }
 
   componentDidMount() {

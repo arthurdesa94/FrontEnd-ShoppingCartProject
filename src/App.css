@@ -1,12 +1,9 @@
 body {
   background-color: whitesmoke;
   box-sizing: border-box;
-  margin: 50px;
-}
-
-.App {
-  text-align: center;
   line-height: 30px;
+  margin: 50px;
+  text-align: center;
 }
 
 .search-form input[type=text] {
@@ -37,4 +34,12 @@ body {
 
 .search-form button:hover {
   background: #0b7dda;
+}
+
+.categories-list {
+  text-align: left;
+}
+
+p.categories-list {
+  font-size: x-large;
 }

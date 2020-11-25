@@ -16,17 +16,21 @@ class Home extends React.Component {
     // this.fetchCategories = this.fetchCategories.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // this.fetchCategories();
-    api.getCategories()
-    .then((result) => this.setState({categories: result}));
+    // api.getCategories().then((result) => this.setState({categories: result}));
+    // console.log(api.getCategories());
+    const categoriesList = await api.getCategories();
+    this.setState({
+      categories: categoriesList,
+    });
   }
 
   // async fetchCategories() {
   //   const categoriesList = await api.getCategories();
-  //   this.setState((previousState) => ({
-  //     categories: [...previousState.categories, ...categoriesList],
-  //   }));
+  //   this.setState({
+  //     categories: categoriesList,
+  //   });
   // }
 
   renderCategoriesList() {
@@ -44,7 +48,6 @@ class Home extends React.Component {
 
   render() {
     const { categories } = this.state;
-    console.log(categories);
 
     return (
       <div>

@@ -1,15 +1,12 @@
-const apiMLB = 'https://api.mercadolibre.com/sites/MLA/';
+const apiMLB = 'https://api.mercadolibre.com/sites/MLB/';
 
-export function getCategories() {
-  // try {
-  //   const requestCategories = await (await fetch(`${apiMLB}categories`)).json();
-  //   return requestCategories;
-  // } catch (error) {
-  //   return error;
-  // }
-  return fetch(`${apiMLB}categories`)
-    .then((response) => response.json())
-    .then((result) => result);
+export async function getCategories() {
+  try {
+    const requestCategories = await (await fetch(`${apiMLB}categories`)).json();
+    return requestCategories;
+  } catch (error) {
+    return error;
+  }
 }
 
 // export async function getProductsFromQuery(query) {

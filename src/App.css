@@ -37,9 +37,7 @@ body {
 }
 
 .categories-list {
+  float: left;
   text-align: left;
-}
-
-p.categories-list {
-  font-size: x-large;
+  width: 20%;
 }

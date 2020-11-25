@@ -8,8 +8,8 @@ export async function getCategories() {
   //   return error;
   // }
   return fetch(`${apiMLB}categories`)
-    .then(response => response.json())
-    .then(result => result);
+    .then((response) => response.json())
+    .then((result) => result);
 }
 
 // export async function getProductsFromQuery(query) {

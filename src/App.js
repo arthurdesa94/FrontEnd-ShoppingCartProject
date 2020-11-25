@@ -6,12 +6,12 @@ import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
   return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={ Home } />
-          <Route path="/shopping-cart" component={ ShoppingCart } />
-        </Switch>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={ Home } />
+        <Route path="/shopping-cart" component={ ShoppingCart } />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

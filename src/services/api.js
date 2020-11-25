@@ -1,4 +1,4 @@
-const apiMLB = 'https://api.mercadolibre.com/sites/MLB/';
+const apiMLB = 'https://api.mercadolibre.com/sites/MLA/';
 
 export function getCategories() {
   // try {

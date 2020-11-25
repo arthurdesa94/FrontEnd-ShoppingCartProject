@@ -13,25 +13,25 @@ class Home extends React.Component {
     }
 
     this.renderCategoriesList = this.renderCategoriesList.bind(this);
-    // this.fetchCategories = this.fetchCategories.bind(this);
+    this.fetchCategories = this.fetchCategories.bind(this);
   }
 
-  async componentDidMount() {
-    // this.fetchCategories();
-    // api.getCategories().then((result) => this.setState({categories: result}));
-    // console.log(api.getCategories());
+  componentDidMount() {
+    this.fetchCategories();
+    // // api.getCategories().then((result) => this.setState({categories: result}));
+    // // console.log(api.getCategories());
+    // const categoriesList = await api.getCategories();
+    // this.setState({
+    //   categories: categoriesList,
+    // });
+  }
+
+  async fetchCategories() {
     const categoriesList = await api.getCategories();
     this.setState({
       categories: categoriesList,
     });
   }
-
-  // async fetchCategories() {
-  //   const categoriesList = await api.getCategories();
-  //   this.setState({
-  //     categories: categoriesList,
-  //   });
-  // }
 
   renderCategoriesList() {
     const { categories } = this.state;

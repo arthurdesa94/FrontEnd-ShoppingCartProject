@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
     const { onSearchTextChange, onClickAPI } = this.props;
 
     return (
-      <div>
+      <div className="search-bar">
         <form className="search-form">
           <input 
             type="text" 

@@ -1,8 +1,6 @@
 import * as React from 'react';
 import * as api from '../services/api';
-import CategoriesList from '../components/CategoriesList';
-import SearchBar from '../components/SearchBar';
-import ProductList from '../components/ProductList';
+import { CategoriesList, ProductList, SearchBar } from '../components'
 
 class Home extends React.Component {
   constructor(props) {
@@ -44,7 +42,8 @@ class Home extends React.Component {
     const { message, productList } = this.state;
 
     return (
-      <div>
+      <div className="container">
+        <h1>Mercadin Online</h1>
         <SearchBar 
           onSearchTextChange={this.onSearchTextChange}
           onClickAPI={this.fetchProductsQuery}

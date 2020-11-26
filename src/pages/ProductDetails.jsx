@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
+import shoppingCart from '../img/shopping-cart.png';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -38,6 +39,9 @@ class ProductDetails extends React.Component {
     return (
       <div>
         <Link to="/">Voltar</Link>
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+          <img src={shoppingCart} alt="Shopping Cart Icon" />
+        </Link>
         <div>
           <img alt="Product" src={thumbnail} />
           <div className="movie-card-body">

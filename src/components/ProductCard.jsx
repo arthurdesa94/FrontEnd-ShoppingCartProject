@@ -2,15 +2,13 @@ import React from 'react';
 class ProductCard extends React.Component {
     render() {
       const { product } = this.props
-      const { id, title, thumbnail, price } = product;
+      const { title, thumbnail, price } = product;
   
       return (
-        <div className="product-card" key={id} data-testid="product">
+        <div className="product-card" data-testid="product">
+          <h4>{title}</h4>
           <img alt="Product" src={thumbnail} />
-          <div className="product-card-body">
-            <h4 >{title}</h4>
-            <h4 >{price}</h4>
-          </div>
+          <p>{`R$ ${price}`}</p>
         </div>
       );
     }

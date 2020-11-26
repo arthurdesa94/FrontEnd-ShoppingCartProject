@@ -1,15 +1,14 @@
 import React from 'react';
+import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
+  
   render() {
+    const { products } = this.props;
+
     return (
-      <div>
-        
+      <div className="product-list">
+        {products.map((product) => <ProductCard key={product.id}  product={product} />)}
       </div>
     );
   }

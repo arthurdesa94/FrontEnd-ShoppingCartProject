@@ -2,14 +2,25 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import shoppingCart from '../img/shopping-cart.png';
 
+
 class SearchBar extends React.Component {
+
   render() {
-    const { searchText, onClickAPI } = this.props;
+    const { onSearchTextChange, onClickAPI } = this.props;
+
     return (
-      <div>
+      <div className="search-bar">
         <form className="search-form">
-          <input type="text" value={searchText} />
-          <button onClick={onClickAPI} >Buscar</button>
+          <input 
+            type="text" 
+            onChange={onSearchTextChange}
+            data-testid="query-input"
+          />
+          <button 
+            onClick={onClickAPI} 
+            data-testid="query-button">
+            Buscar
+          </button>
         </form>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
           <img src={shoppingCart} alt="Shopping Cart Icon" />

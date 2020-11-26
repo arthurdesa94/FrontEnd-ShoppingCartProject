@@ -3,11 +3,11 @@ import * as api from '../services/api';
 
 class CategoriesList extends React.Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       categories: [],
-    }
+    };
 
     this.fetchCategories = this.fetchCategories.bind(this);
   }
@@ -34,7 +34,8 @@ class CategoriesList extends React.Component {
             .map((category) =>
               <li key={category.id} className="category-item" data-testid="category">
                 {category.name}
-              </li>)
+              </li>
+            )
           }
         </ul>
       </div>

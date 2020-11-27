@@ -69,7 +69,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { message, productList } = this.state;
+    const { message, productList, categories } = this.state;
     const noProduct = <p>Nenhum produto foi encontrado</p>;
 
     return (
@@ -82,8 +82,8 @@ class Home extends React.Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <CategoriesList handleCategories={this.handleEvent} categories={this.state.categories} />
-        {message ? <p>Nenhum produto foi encontrado</p> : <ProductList products={productList}/>}
+        <CategoriesList handleCategories={this.handleEvent} categories={ categories } />
+        { message ? noProduct : <ProductList products={productList} /> }
       </div>
     );
   }

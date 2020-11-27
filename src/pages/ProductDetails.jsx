@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import shoppingCart from '../img/shopping-cart.png';
 
@@ -56,5 +57,14 @@ class ProductDetails extends React.Component {
     );
   }
 }
+
+ProductDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+      category_id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 export default ProductDetails;

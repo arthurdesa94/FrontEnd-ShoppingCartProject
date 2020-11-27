@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import shoppingCart from '../img/shopping-cart.png';
-
 
 class SearchBar extends React.Component {
   render() {
@@ -29,5 +29,10 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  onSearchTextChange: PropTypes.func,
+  onClickAPI: PropTypes.func,
+};
 
 export default SearchBar;

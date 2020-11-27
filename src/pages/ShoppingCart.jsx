@@ -15,18 +15,18 @@ class ShoppingCart extends React.Component {
   //     list: [],
   //   }
   // }
-  
-  /* deleteItem() {
 
-  }
+  // deleteItem() {
 
-  increaseItem() {
+  // }
 
-  }
+  // increaseItem() {
 
-  decreaseItem() {
-    
-  }*/
+  // }
+
+  // decreaseItem() {
+
+  // }
 
   // sumItemQuantity(id, quantity) {
   //   if (!this.state[id]) {
@@ -43,11 +43,11 @@ class ShoppingCart extends React.Component {
   //   return this.state[id];
   // }
 
-  /*sumItemPrice() {
-  }
-        
-  sumValue() {
-  }*/
+  // sumItemPrice() {
+  // }
+
+  // sumValue() {
+  // }
 
   render() {
     const productsList = JSON.parse(localStorage.getItem('productsList'));
@@ -60,20 +60,23 @@ class ShoppingCart extends React.Component {
         </div>
       );
     }
-        
+  
     return (
       <div>
-        {productsList.map((item) => 
-          <div key={item.id}>
-            <button type="button">x</button>
-            <img key={"picture"} alt="Product" src={item.thumbnail} />
-            <p key={"title"} data-testid="shopping-cart-product-name">{item.title}</p>
-            <button type="button">-</button>
-            <p key={"quantity"} data-testid="shopping-cart-product-quantity">{item.quantity}</p>
-            <button type="button">+</button>
-            <p key={"price"}>{item.price}</p>
-          </div>
-        )}
+        {
+          productsList.map((item) => (
+            <div key={ item.id }>
+              <button type="button">x</button>
+              <img key={ "picture" } alt="Product" src={ item.thumbnail } />
+              <p key={ "title" } data-testid="shopping-cart-product-name">{ item.title }</p>
+              <button type="button">-</button>
+              <p key={ "quantity" } data-testid="shopping-cart-product-quantity">{ item.quantity }</p>
+              <button type="button">+</button>
+              <p key={ "price" }>{ item.price }</p>
+            </div>
+          ))
+        }
+
         {/* <div>{this.sumValue()}</div> */}
         <button type="submit">Finalizar a compra</button>
       </div>

@@ -28,7 +28,9 @@ class ProductDetails extends React.Component {
     const products = JSON.parse(localStorage.getItem('productsList'));
     const quantity = 1;
     localStorage.setItem(
-      'productsList', JSON.stringify([...products, { id, title, thumbnail, price, quantity }])
+      'productsList', JSON.stringify(
+        [...products, { id, title, thumbnail, price, quantity }]
+      )
     );
   }
 
@@ -66,7 +68,7 @@ class ProductDetails extends React.Component {
             <p>{`Preço: R$ ${price}`}</p>
             <p>{`Quatidade Disponível: ${availableQuantity}`}</p>
           </div>
-          <button 
+          <button
             data-id={ id }
             data-title={ title }
             data-thumbnail={ thumbnail }

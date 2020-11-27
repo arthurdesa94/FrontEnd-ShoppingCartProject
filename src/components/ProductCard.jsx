@@ -38,7 +38,7 @@ class ProductCard extends React.Component {
             <p>{ `R$ ${price}` }</p>
           </div>
         </Link>
-        <button 
+        <button
           data-id={ id }
           data-title={ title }
           data-thumbnail={ thumbnail }

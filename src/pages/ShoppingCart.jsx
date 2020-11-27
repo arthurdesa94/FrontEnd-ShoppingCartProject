@@ -50,16 +50,16 @@ class ShoppingCart extends React.Component {
 
     return (
       <div>
-        {productsList.map((item) =>
-          <div key={ item.id }>
+        { productsList.map((item) =>
+          (<div key={ item.id }>
             <button type="button">x</button>
-            <img alt="Product" src={item.thumbnail} />
+            <img alt="Product" src={ item.thumbnail } />
             <p>{ item.title }</p>
             <button type="button">-</button>
             <p>{ this.sumItems(item.id) }</p>
             <button type="button">+</button>
             <p>{ item.value }</p>
-          </div>)}
+          </div>)) }
         <div>{ this.sumValue() }</div>
         <button type="submit">Finalizar a compra</button>
       </div>

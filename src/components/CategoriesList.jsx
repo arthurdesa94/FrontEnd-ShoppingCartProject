@@ -11,7 +11,7 @@ class CategoriesList extends React.Component {
         <ul>
           { categories
             .map((category) =>
-              <li
+              (<li
                 key={ category.id }
                 data-id={ category.id }
                 onClick={ handleCategories }
@@ -19,11 +19,7 @@ class CategoriesList extends React.Component {
                 data-testid="category"
               >
                 { category.name }
-              </li>,
-            
-            )
-          }
-
+              </li>)) }
         </ul>
       </div>
     );

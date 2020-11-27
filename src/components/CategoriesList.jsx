@@ -17,10 +17,7 @@ class CategoriesList extends React.Component {
               aria-hidden="true"
               className="category-item"
               data-testid="category"
-            >
-              { category.name }
-            </li>))
-          }
+            >{ category.name }</li>)) }
         </ul>
       </div>
     );

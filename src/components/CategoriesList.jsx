@@ -9,18 +9,20 @@ class CategoriesList extends React.Component {
       <div className="categories-list">
         <p>Categorias</p>
         <ul>
-          { categories.map((category) => (
-            <li
-              key={ category.id }
-              data-id={ category.id }
-              onClick={ handleCategories }
-              aria-hidden="true"
-              className="category-item"
-              data-testid="category"
-            >
-            { category.name }
-            </li>)
-          ) }
+          {
+            categories.map((category) => (
+              <li
+                key={ category.id }
+                data-id={ category.id }
+                onClick={ handleCategories }
+                aria-hidden="true"
+                className="category-item"
+                data-testid="category"
+              >
+                { category.name }
+              </li>
+            ))
+          }
         </ul>
       </div>
     );

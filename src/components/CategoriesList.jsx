@@ -31,10 +31,10 @@ class CategoriesList extends React.Component {
         <p>Categorias</p>
         <ul>
           {categories
-            .map((category) =>
-              <li key={category.id} className="category-item" data-testid="category">
+            .map((category) => 
+              (<li key={category.id} className="category-item" data-testid="category">
                 {category.name}
-              </li>
+              </li>)
             )
           }
         </ul>

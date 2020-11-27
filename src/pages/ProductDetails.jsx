@@ -20,30 +20,32 @@ class ProductDetails extends React.Component {
   }
 
   async fetchProductDetail() {
-    const { id, category_id } = this.props.match.params;
-    const requestProductDetail = await api.getProductsFromCategoryAndQuery(category_id, '');
+    const { match } = this.props;
+    const { params } = match;
+    const { id, category_id } = params;
+    const reqProductDetail = await api.getProductsFromCategoryAndQuery(category_id, '');
     this.setState({
       loading: false,
-      productDetails: requestProductDetail.results.find((product) => product.id === id),
+      productDetails: reqProductDetail.results.find((product) => product.id === id),
     });
   }
-  
+
   render() {
     const { productDetails, loading } = this.state;
     const { title, thumbnail, price, available_quantity } = productDetails;
 
-    if(loading) {
-      return <p>Loading...</p>
+    if (loading) {
+      return <p>Loading...</p>;
     }
- 
+
     return (
       <div>
         <Link to="/">Voltar</Link>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
-          <img src={shoppingCart} alt="Shopping Cart Icon" />
+          <img src={ shoppingCart } alt="Shopping Cart Icon" />
         </Link>
         <div>
-          <img alt="Product" src={thumbnail} />
+          <img alt="Product" src={ thumbnail } />
           <div className="movie-card-body">
             <p data-testid="product-detail-name">{`Nome do Produto: ${title}`}</p>
             <p>{`Preço: R$ ${price}`}</p>

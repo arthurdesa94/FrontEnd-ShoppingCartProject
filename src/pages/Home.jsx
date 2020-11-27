@@ -15,11 +15,13 @@ class Home extends React.Component {
       productList: [],
       categories: [],
       selectedCategory: [],
+      localStorage: [],
     };
   }
 
   componentDidMount() {
     this.fetchCategories();
+    localStorage.setItem('productsList', JSON.stringify(this.state.localStorage));
   }
 
   async fetchCategories() {

@@ -15,7 +15,9 @@ class ProductCard extends React.Component {
     const price = target.getAttribute('data-price');
     const products = JSON.parse(localStorage.getItem('productsList'));
     const quantity = 1;
-    localStorage.setItem('productsList', JSON.stringify([...products, {id, title, thumbnail, price, quantity}]))
+    localStorage.setItem('productsList', JSON.stringify(
+      [...products, { id, title, thumbnail, price, quantity }]
+    ));
   }
 
   render() {
@@ -26,17 +28,27 @@ class ProductCard extends React.Component {
     return (
       <div>
         <Link
-          to={`product/${category_id}/${id}`}
+          to={ `product/${categoryId}/${id}` }
           className="link"
           data-testid="product-detail-link"
         >
           <div className="product-card" data-testid="product">
-            <h4>{title}</h4>
-            <img alt="Product" src={thumbnail} />
-            <p>{`R$ ${price}`}</p>
+            <h4>{ title }</h4>
+            <img alt="Product" src={ thumbnail } />
+            <p>{ `R$ ${price}` }</p>
           </div>
         </Link>
-        <button data-id={ id } data-title={ title } data-thumbnail={ thumbnail } data-price={ price } type="button" data-testid="product-add-to-cart" onClick={this.saveStorage}>Adicionar ao carrinho</button>
+        <button 
+          data-id={ id }
+          data-title={ title }
+          data-thumbnail={ thumbnail }
+          data-price={ price }
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ this.saveStorage }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }

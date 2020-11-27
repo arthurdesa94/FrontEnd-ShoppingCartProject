@@ -2,19 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
-  constructor() {
-    super();
-    this.deleteItem = this.deleteItem.bind(this);
-    this.increaseItem = this.increaseItem.bind(this);
-    this.decreaseItem = this.decreaseItem.bind(this);
-    this.sumItemQuantity = this.sumItemQuantity.bind(this);
-    this.sumItemPrice = this.sumItemPrice.bind(this);
-    this.sumValue = this.sumValue.bind(this);
-    this.state = {
-      totalPrice: 0,
-      list: [],
-    }
-  }
+  // constructor() {
+  //   super();
+  //   this.deleteItem = this.deleteItem.bind(this);
+  //   this.increaseItem = this.increaseItem.bind(this);
+  //   this.decreaseItem = this.decreaseItem.bind(this);
+  //   this.sumItemQuantity = this.sumItemQuantity.bind(this);
+  //   this.sumItemPrice = this.sumItemPrice.bind(this);
+  //   this.sumValue = this.sumValue.bind(this);
+  //   this.state = {
+  //     totalPrice: 0,
+  //     list: [],
+  //   }
+  // }
   
   /* deleteItem() {
 
@@ -28,20 +28,20 @@ class ShoppingCart extends React.Component {
     
   }*/
 
-  sumItemQuantity(id, quantity) {
-    if (!this.state[id]) {
-      this.setState ({
-        id: quantity,
-      })
-      return 1;
-    }
-    let quantityOfProducts = this.state[id];
-    const newStateValue = quantityOfProducts + 1;
-    this.setState({
-      id: newStateValue,
-    })
-    return this.state[id];
-  }
+  // sumItemQuantity(id, quantity) {
+  //   if (!this.state[id]) {
+  //     this.setState ({
+  //       id: quantity,
+  //     })
+  //     return 1;
+  //   }
+  //   let quantityOfProducts = this.state[id];
+  //   const newStateValue = quantityOfProducts + 1;
+  //   this.setState({
+  //     id: newStateValue,
+  //   })
+  //   return this.state[id];
+  // }
 
   /*sumItemPrice() {
   }
@@ -71,10 +71,10 @@ class ShoppingCart extends React.Component {
             <button type="button">-</button>
             <p key={"quantity"} data-testid="shopping-cart-product-quantity">{item.quantity}</p>
             <button type="button">+</button>
-            <p key={"price"}>{this.sumItemPrice(item.price)}</p>
+            <p key={"price"}>{item.price}</p>
           </div>
         )}
-        <div>{this.sumValue()}</div>
+        {/* <div>{this.sumValue()}</div> */}
         <button type="submit">Finalizar a compra</button>
       </div>
     );

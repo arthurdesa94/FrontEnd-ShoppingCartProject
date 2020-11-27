@@ -16,7 +16,7 @@ class ProductCard extends React.Component {
     const products = JSON.parse(localStorage.getItem('productsList'));
     const quantity = 1;
     localStorage.setItem('productsList', JSON.stringify(
-      [...products, { id, title, thumbnail, price, quantity }]
+      [...products, { id, title, thumbnail, price, quantity }],
     ));
   }
 

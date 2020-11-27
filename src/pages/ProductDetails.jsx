@@ -29,8 +29,8 @@ class ProductDetails extends React.Component {
     const quantity = 1;
     localStorage.setItem(
       'productsList', JSON.stringify(
-        [...products, { id, title, thumbnail, price, quantity }]
-      )
+        [...products, { id, title, thumbnail, price, quantity }],
+      ),
     );
   }
 

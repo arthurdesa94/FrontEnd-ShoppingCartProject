@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
   render() {
@@ -7,7 +8,8 @@ class ProductCard extends React.Component {
     const { id, category_id, title, thumbnail, price } = product;
 
     return (
-      <Link to={ `product/${category_id}/${id}` }
+      <Link 
+        to={ `product/${category_id}/${id}` }
         className="link"
         data-testid="product-detail-link"
       >
@@ -20,5 +22,13 @@ class ProductCard extends React.Component {
     );
   }
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.string,
+  }),
+}.isRequired;
 
 export default ProductCard;

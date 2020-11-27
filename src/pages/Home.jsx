@@ -15,11 +15,14 @@ class Home extends React.Component {
       productList: [],
       categories: [],
       selectedCategory: [],
+      localStorageList: [],
     };
   }
 
   componentDidMount() {
     this.fetchCategories();
+    const { localStorageList } = this.state;
+    localStorage.setItem('productsList', JSON.stringify(localStorageList));
   }
 
   onSearchTextChange(event) {

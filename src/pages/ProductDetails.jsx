@@ -12,12 +12,26 @@ class ProductDetails extends React.Component {
       loading: true,
       productDetails: [],
     };
-
+    this.saveStorage = this.saveStorage.bind(this);
     this.fetchProductDetail = this.fetchProductDetail.bind(this);
   }
 
   componentDidMount() {
     this.fetchProductDetail();
+  }
+
+  saveStorage({ target }) {
+    const id = target.getAttribute('data-id');
+    const title = target.getAttribute('data-title');
+    const thumbnail = target.getAttribute('data-thumbnail');
+    const price = target.getAttribute('data-price');
+    const products = JSON.parse(localStorage.getItem('productsList'));
+    const quantity = 1;
+    localStorage.setItem(
+      'productsList', JSON.stringify(
+        [...products, { id, title, thumbnail, price, quantity }],
+      ),
+    );
   }
 
   async fetchProductDetail() {
@@ -35,7 +49,7 @@ class ProductDetails extends React.Component {
   render() {
     const { productDetails, loading } = this.state;
     const { available_quantity: availableQuantity } = productDetails;
-    const { title, thumbnail, price } = productDetails;
+    const { id, title, thumbnail, price } = productDetails;
 
     if (loading) {
       return <p>Loading...</p>;
@@ -54,6 +68,17 @@ class ProductDetails extends React.Component {
             <p>{`Preço: R$ ${price}`}</p>
             <p>{`Quatidade Disponível: ${availableQuantity}`}</p>
           </div>
+          <button
+            data-id={ id }
+            data-title={ title }
+            data-thumbnail={ thumbnail }
+            data-price={ price }
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ this.saveStorage }
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
       </div>
     );

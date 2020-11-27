@@ -15,7 +15,8 @@ class SearchBar extends React.Component {
             onChange={ onSearchTextChange }
             data-testid="query-input"
           />
-          <button type="button"
+          <button
+            type="button"
             onClick={ onClickAPI }
             data-testid="query-button"
           >
@@ -31,8 +32,8 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  onSearchTextChange: PropTypes.func,
-  onClickAPI: PropTypes.func,
+  onSearchTextChange: PropTypes.func.isRequired,
+  onClickAPI: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

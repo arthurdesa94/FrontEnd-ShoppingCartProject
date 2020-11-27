@@ -18,11 +18,6 @@ class Home extends React.Component {
     };
   }
 
-  handleEvent(event) {
-    const id = event.target.getAttribute("data-id");
-    this.handleCategories(id);
-  } 
-
   componentDidMount() {
     this.fetchCategories();
   }
@@ -37,6 +32,11 @@ class Home extends React.Component {
   onSearchTextChange(event) {
     const { value } = event.target;
     this.setState({ searchText: value });
+  }
+
+  handleEvent(event) {
+    const id = event.target.getAttribute('data-id');
+    this.handleCategories(id);
   }
 
   async fetchProductsQuery(event) {
@@ -58,14 +58,15 @@ class Home extends React.Component {
 
   handleCategories(id) {
     this.setState({
-    selectedCategory: id,
+      selectedCategory: id,
     }, async () => {
       const { searchText, selectedCategory } = this.state;
-      const productFecth = await api.getProductsFromCategoryAndQuery(selectedCategory, searchText);
+      const productFecth = await
+      api.getProductsFromCategoryAndQuery(selectedCategory, searchText);
       this.setState({
         productList: productFecth.results,
-      })
-    })
+      });
+    });
   }
 
   render() {
@@ -82,8 +83,8 @@ class Home extends React.Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <CategoriesList handleCategories={this.handleEvent} categories={ categories } />
-        { message ? noProduct : <ProductList products={productList} /> }
+        <CategoriesList handleCategories={ this.handleEvent } categories={ categories } />
+        { message ? noProduct : <ProductList products={ productList } /> }
       </div>
     );
   }

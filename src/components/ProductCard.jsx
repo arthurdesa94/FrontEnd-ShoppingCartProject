@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
-    const { id, category_id, title, thumbnail, price } = product;
+    const { category_id: categoryId } = product
+    const { id, title, thumbnail, price } = product;
 
     return (
       <Link
-        to={ `product/${category_id}/${id}` }
+        to={ `product/${categoryId}/${id}` }
         className="link"
         data-testid="product-detail-link"
       >

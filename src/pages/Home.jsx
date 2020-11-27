@@ -5,19 +5,37 @@ import { CategoriesList, ProductList, SearchBar } from '../components';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-
+    this.fetchCategories = this.fetchCategories.bind(this);
+    this.handleEvent = this.handleEvent.bind(this);
+    this.handleCategories = this.handleCategories.bind(this);
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.fetchProductsQuery = this.fetchProductsQuery.bind(this);
     this.state = {
       searchText: '',
       productList: [],
+      categories: [],
+      selectedCategory: [],
     };
+  }
 
-    this.onSearchTextChange = this.onSearchTextChange.bind(this);
-    this.fetchProductsQuery = this.fetchProductsQuery.bind(this);
+  handleEvent(event) {
+    const id = event.target.getAttribute("data-id");
+    this.handleCategories(id);
+  } 
+
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
+  async fetchCategories() {
+    const categoriesList = await api.getCategories();
+    this.setState({
+      categories: categoriesList,
+    });
   }
 
   onSearchTextChange(event) {
     const { value } = event.target;
-
     this.setState({ searchText: value });
   }
 
@@ -38,6 +56,18 @@ class Home extends React.Component {
     }
   }
 
+  handleCategories(id) {
+    this.setState({
+    selectedCategory: id,
+    }, async () => {
+      const { searchText, selectedCategory } = this.state;
+      const productFecth = await api.getProductsFromCategoryAndQuery(selectedCategory, searchText);
+      this.setState({
+        productList: productFecth.results,
+      })
+    })
+  }
+
   render() {
     const { message, productList } = this.state;
     const noProduct = <p>Nenhum produto foi encontrado</p>;
@@ -52,8 +82,8 @@ class Home extends React.Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <CategoriesList />
-        { message ? noProduct : <ProductList products={productList} /> }
+        <CategoriesList handleCategories={this.handleEvent} categories={this.state.categories} />
+        {message ? <p>Nenhum produto foi encontrado</p> : <ProductList products={productList}/>}
       </div>
     );
   }

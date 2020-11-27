@@ -1,38 +1,16 @@
 import React from 'react';
-import * as api from '../services/api';
 
 class CategoriesList extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      categories: [],
-    };
-
-    this.fetchCategories = this.fetchCategories.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchCategories();
-  }
-
-  async fetchCategories() {
-    const categoriesList = await api.getCategories();
-    this.setState({
-      categories: categoriesList,
-    });
-  }
-
   render() {
-    const { categories } = this.state;
+    const { categories, handleCategories } = this.props;
 
     return (
       <div className="categories-list">
         <p>Categorias</p>
         <ul>
           {categories
-            .map((category) => 
-              (<li key={category.id} className="category-item" data-testid="category">
+            .map((category) =>
+              <li key={category.id} data-id={category.id} onClick={handleCategories} className="category-item" data-testid="category">
                 {category.name}
               </li>)
             )

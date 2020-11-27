@@ -24,16 +24,16 @@ class Home extends React.Component {
     localStorage.setItem('productsList', JSON.stringify(this.state.localStorage));
   }
 
+  onSearchTextChange(event) {
+    const { value } = event.target;
+    this.setState({ searchText: value });
+  }
+
   async fetchCategories() {
     const categoriesList = await api.getCategories();
     this.setState({
       categories: categoriesList,
     });
-  }
-
-  onSearchTextChange(event) {
-    const { value } = event.target;
-    this.setState({ searchText: value });
   }
 
   handleEvent(event) {
@@ -45,7 +45,7 @@ class Home extends React.Component {
     event.preventDefault();
     const { searchText } = this.state;
     const productFecth = await api.getProductsFromCategoryAndQuery('', searchText);
-    if (productFecth.results.length === 0) {
+    if (!productFecth.results.length) {
       this.setState({
         productList: [],
         message: true,
@@ -67,6 +67,7 @@ class Home extends React.Component {
       api.getProductsFromCategoryAndQuery(selectedCategory, searchText);
       this.setState({
         productList: productFecth.results,
+        message: false,
       });
     });
   }

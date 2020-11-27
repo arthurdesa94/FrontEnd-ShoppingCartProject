@@ -33,8 +33,9 @@ class ProductDetails extends React.Component {
   async fetchProductDetail() {
     const { match } = this.props;
     const { params } = match;
-    const { id, category_id } = params;
-    const reqProductDetail = await api.getProductsFromCategoryAndQuery(category_id, '');
+    const { category_id: categoryId } = params;
+    const { id } = params;
+    const reqProductDetail = await api.getProductsFromCategoryAndQuery(categoryId, '');
     this.setState({
       loading: false,
       productDetails: reqProductDetail.results.find((product) => product.id === id),
@@ -43,7 +44,8 @@ class ProductDetails extends React.Component {
 
   render() {
     const { productDetails, loading } = this.state;
-    const { id, title, thumbnail, price, available_quantity } = productDetails;
+    const { available_quantity: availableQuantity } = productDetails;
+    const { id, title, thumbnail, price } = productDetails;
 
     if (loading) {
       return <p>Loading...</p>;
@@ -60,7 +62,7 @@ class ProductDetails extends React.Component {
           <div className="movie-card-body">
             <p data-testid="product-detail-name">{`Nome do Produto: ${title}`}</p>
             <p>{`Preço: R$ ${price}`}</p>
-            <p>{`Quatidade Disponível: ${available_quantity}`}</p>
+            <p>{`Quatidade Disponível: ${availableQuantity}`}</p>
           </div>
           <button data-id={ id } data-title={ title } data-thumbnail={ thumbnail } data-price={ price } type="button" data-testid="product-detail-add-to-cart" onClick={this.saveStorage}>Adicionar ao carrinho</button>
         </div>

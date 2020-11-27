@@ -15,8 +15,8 @@ class ShoppingCart extends React.Component {
       list: [],
     }
   }
-
-  deleteItem() {
+  
+  /* deleteItem() {
 
   }
 
@@ -26,7 +26,7 @@ class ShoppingCart extends React.Component {
 
   decreaseItem() {
     
-  }
+  }*/
 
   sumItemQuantity(id, quantity) {
     if (!this.state[id]) {
@@ -43,18 +43,16 @@ class ShoppingCart extends React.Component {
     return this.state[id];
   }
 
-  sumItemPrice() {
-
+  /*sumItemPrice() {
   }
-
+        
   sumValue() {
-
-  }
+  }*/
 
   render() {
     const productsList = JSON.parse(localStorage.getItem('productsList'));
 
-    if (productsList.length === 0) {
+    if (!productsList.length) {
       return (
         <div>
           <Link to="/">Voltar</Link>
@@ -62,7 +60,7 @@ class ShoppingCart extends React.Component {
         </div>
       );
     }
-
+        
     return (
       <div>
         {productsList.map((item) => 
@@ -79,7 +77,7 @@ class ShoppingCart extends React.Component {
         <div>{this.sumValue()}</div>
         <button type="submit">Finalizar a compra</button>
       </div>
-    )
+    );
   }
 }
 

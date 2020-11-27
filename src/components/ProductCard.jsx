@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
-    const { category_id: categoryId } = product
+    const { category_id: categoryId } = product;
     const { id, title, thumbnail, price } = product;
 
     return (

@@ -22,16 +22,16 @@ class Home extends React.Component {
     this.fetchCategories();
   }
 
+  onSearchTextChange(event) {
+    const { value } = event.target;
+    this.setState({ searchText: value });
+  }
+
   async fetchCategories() {
     const categoriesList = await api.getCategories();
     this.setState({
       categories: categoriesList,
     });
-  }
-
-  onSearchTextChange(event) {
-    const { value } = event.target;
-    this.setState({ searchText: value });
   }
 
   handleEvent(event) {

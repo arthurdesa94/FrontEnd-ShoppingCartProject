@@ -8,7 +8,7 @@ class ProductCard extends React.Component {
     const { id, category_id, title, thumbnail, price } = product;
 
     return (
-      <Link 
+      <Link
         to={ `product/${category_id}/${id}` }
         className="link"
         data-testid="product-detail-link"

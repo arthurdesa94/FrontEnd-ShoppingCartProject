@@ -12,10 +12,8 @@ class ShoppingCart extends React.Component {
     this.state = {
       totalPrice: 0,
       list: {
-        
-
-      }
-    }
+      },
+    };
   }
 
   deleteItem() {
@@ -27,7 +25,7 @@ class ShoppingCart extends React.Component {
   }
 
   decreaseItem() {
-    
+
   }
 
   sumItems() {
@@ -52,21 +50,20 @@ class ShoppingCart extends React.Component {
 
     return (
       <div>
-        {productsList.map((item) => 
-          <div key={item.id}>
-            <button>x</button>
+        {productsList.map((item) =>
+          <div key={ item.id }>
+            <button type="button">x</button>
             <img alt="Product" src={item.thumbnail} />
-            <p>{item.title}</p>
-            <button>-</button>
-            <p>{this.sumItems(item.id)}</p>
-            <button>+</button>
-            <p>{item.value}</p>
-          </div>
-        )}
-        <div>{this.sumValue()}</div>
-        <button>Finalizar a compra</button>
+            <p>{ item.title }</p>
+            <button type="button">-</button>
+            <p>{ this.sumItems(item.id) }</p>
+            <button type="button">+</button>
+            <p>{ item.value }</p>
+          </div>)}
+        <div>{ this.sumValue() }</div>
+        <button type="submit">Finalizar a compra</button>
       </div>
-    )
+    );
   }
 }
 

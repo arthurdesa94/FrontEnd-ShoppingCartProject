@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as api from '../services/api';
-import { CategoriesList, ProductList, SearchBar } from '../components'
+import { CategoriesList, ProductList, SearchBar } from '../components';
 
 class Home extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class Home extends React.Component {
       this.setState({
         productList: [],
         message: true,
-      })
+      });
     } else {
       this.setState({
         productList: productFecth.results,
@@ -70,13 +70,14 @@ class Home extends React.Component {
 
   render() {
     const { message, productList } = this.state;
+    const noProduct = <p>Nenhum produto foi encontrado</p>;
 
     return (
       <div className="container">
         <h1>Mercadin Online</h1>
-        <SearchBar 
-          onSearchTextChange={this.onSearchTextChange}
-          onClickAPI={this.fetchProductsQuery}
+        <SearchBar
+          onSearchTextChange={ this.onSearchTextChange }
+          onClickAPI={ this.fetchProductsQuery }
         />
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

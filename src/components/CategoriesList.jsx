@@ -13,6 +13,7 @@ class CategoriesList extends React.Component {
               <li key={category.id} data-id={category.id} onClick={handleCategories} className="category-item" data-testid="category">
                 {category.name}
               </li>)
+            )
           }
         </ul>
       </div>

@@ -59,7 +59,7 @@ class Evaluation extends React.Component {
 
     return (
       <div>
-        <form>
+        <div>
           <textarea
             value={ evaluationText }
             id="evaluationText"
@@ -70,7 +70,7 @@ class Evaluation extends React.Component {
             data-testid="product-detail-evaluation"
           />
 
-          <label htmlFor="rating" id="rating">Avaliação</label>
+          <p>Avaliação</p>
           <input
             type="number"
             min="0"
@@ -81,7 +81,7 @@ class Evaluation extends React.Component {
             onChange={ this.onChangeHandler }
             data-testid="rating-input"
           />
-        </form>
+        </div>
         <span>{ `Média de opiniões: ${reviewRating}` }</span>
         { !reviewList.length ? <h3>Sem Comentários</h3> : this.renderReviews()}
       </div>

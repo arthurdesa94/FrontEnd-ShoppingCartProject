@@ -16,7 +16,7 @@ class ProductCard extends React.Component {
     const products = JSON.parse(localStorage.getItem('productsList'));
     const foundProducts = products.filter((product) => product.id === id);
     const quantity = foundProducts.length + 1;
-    const price = parseFloat(target.getAttribute('data-price'));
+    let price = parseFloat(target.getAttribute('data-price'));
     // const xablau = this.mergeArray(target, ...products);
     // console.log("Found Products", foundProducts)
     // console.log("mergeArray", xablau);
@@ -25,7 +25,7 @@ class ProductCard extends React.Component {
       localStorage.setItem('productsList', JSON.stringify(
         [...products, { id, title, thumbnail, price, quantity }],
       ));
-    } else  {
+    } else {
       const priceFound = parseFloat(target.getAttribute('data-price'));
       const priceArray = foundProducts.map((product) => product.price);
       const incrementPrice = [...priceArray, priceFound];

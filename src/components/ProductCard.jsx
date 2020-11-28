@@ -22,25 +22,24 @@ class ProductCard extends React.Component {
     // console.log("mergeArray", xablau);
 
     if (!products.length) {
-      
       localStorage.setItem('productsList', JSON.stringify(
         [...products, { id, title, thumbnail, price, quantity }],
       ));
-
     } else  {
-     
       const priceFound = parseFloat(target.getAttribute('data-price'));
       const priceArray = foundProducts.map((product) => product.price);
       const incrementPrice = [...priceArray, priceFound];
-      const price = incrementPrice.reduce((acc, nextValue) => {
-        return acc + nextValue;
-      }, 0);
+      price = incrementPrice.reduce((acc, nextValue) => acc + nextValue);
       // const { id, title, thumbnail, price, quantity } = lastItem;
       // const lastItem = foundProducts[foundProducts.length - 1];
       // console.log(lastItem);
 
-      localStorage.setItem('productsList', JSON.stringify([...products, {id, title, thumbnail, price, quantity}]));
-    } 
+      localStorage.setItem(
+        'productsList', JSON.stringify(
+          [...products, { id, title, thumbnail, price, quantity }],
+        ),
+      );
+    }
   }
 
   // mergeArray(target, ...products) {

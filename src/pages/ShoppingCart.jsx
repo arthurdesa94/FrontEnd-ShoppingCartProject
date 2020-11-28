@@ -79,21 +79,21 @@ class ShoppingCart extends React.Component {
     //       </div>
     //     </div>
     //   )
-    // } 
+    // }
 
     return (
       <div>
         <Link to="/">Voltar</Link>
         {
-          productsList.map((productsList) => (
-            <div key={ productsList.id }>
+          productsList.map((product) => (
+            <div key={ product.id }>
               <button type="button">x</button>
-              <img alt="Product" src={ productsList.thumbnail } />
-              <p data-testid="shopping-cart-product-name">{ productsList.title }</p>
+              <img alt="Product" src={ product.thumbnail } />
+              <p data-testid="shopping-cart-product-name">{ product.title }</p>
               <button type="button" data-testid="product-decrease-quantity">-</button>
-              <p data-testid="shopping-cart-product-quantity">{ productsList.quantity }</p>
+              <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
               <button type="button" data-testid="product-increase-quantity">+</button>
-              <p>{ productsList.price }</p>
+              <p>{ product.price }</p>
             </div>
           ))
         }

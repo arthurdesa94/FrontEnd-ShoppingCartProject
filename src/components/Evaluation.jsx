@@ -30,7 +30,7 @@ class Evaluation extends React.Component {
   //   const requestReview = await api.getReviews(productId);
   //   const { reviews } = requestReview;
   //   const { rating_average: ratingAverage} = requestReview;
-    
+
   //   this.setState({
   //     reviewList: reviews,
   //     reviewRating: ratingAverage,
@@ -40,9 +40,9 @@ class Evaluation extends React.Component {
   renderReviews() {
     const { reviewList } = this.state;
     return (
-      <div> 
+      <div>
         <h3>Comentários</h3>
-        { 
+        {
           reviewList.map((review) => (
             <div key={ review.id }>
               <h4>{ review.title }</h4>
@@ -51,34 +51,35 @@ class Evaluation extends React.Component {
           ))
         }
       </div>
-    )
+    );
   }
+
   render() {
     const { evaluationText, rating, reviewList, reviewRating } = this.state;
-    
+
     return (
       <div>
         <form>
           <textarea
-            value={evaluationText}
+            value={ evaluationText }
             id="evaluationText"
             cols="30"
             rows="5"
             placeholder="Comentário (opcional)"
-            onChange={this.onChangeHandler}
+            onChange={ this.onChangeHandler }
             data-testid="product-detail-evaluation"
           />
-          
+
           <label htmlFor="rating">Avaliação</label>
-            <input
-              type="number"
-              min="0"
-              max="5"
-              step="0.1"
-              value={ rating }
-              id="rating"
-              onChange={ this.onChangeHandler }
-              data-testid="rating-input"
+          <input
+            type="number"
+            min="0"
+            max="5"
+            step="0.1"
+            value={ rating }
+            id="rating"
+            onChange={ this.onChangeHandler }
+            data-testid="rating-input"
           />
         </form>
         <span>{ `Média de opiniões: ${reviewRating}` }</span>

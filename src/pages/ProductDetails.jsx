@@ -81,7 +81,7 @@ class ProductDetails extends React.Component {
           >
             Adicionar ao carrinho
           </button>
-          <Evaluation /> 
+          <Evaluation />
           {/* productId={id} */}
         </div>
       </div>

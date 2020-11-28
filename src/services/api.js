@@ -22,7 +22,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
 export async function getReviews(productId) {
   const reviewsEndPoint = `https://api.mercadolibre.com/reviews/item/${productId}`;
   try {
-    const requestReviews = await (await fetch (reviewsEndPoint)).json();
+    const requestReviews = await (await fetch(reviewsEndPoint)).json();
     return requestReviews;
   } catch (error) {
     return error;

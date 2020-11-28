@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 class ShoppingCart extends React.Component {
   // constructor() {
   //   super();
-  //   this.deleteItem = this.deleteItem.bind(this);
-  //   this.increaseItem = this.increaseItem.bind(this);
-  //   this.decreaseItem = this.decreaseItem.bind(this);
-  //   this.sumItemQuantity = this.sumItemQuantity.bind(this);
-  //   this.sumItemPrice = this.sumItemPrice.bind(this);
+  //   this.deleteproductsList = this.deleteproductsList.bind(this);
+  //   this.increaseproductsList = this.increaseproductsList.bind(this);
+  //   this.decreaseproductsList = this.decreaseproductsList.bind(this);
+  //   this.sumproductsListQuantity = this.sumproductsListQuantity.bind(this);
+  //   this.sumproductsListPrice = this.sumproductsListPrice.bind(this);
   //   this.sumValue = this.sumValue.bind(this);
   //   this.state = {
   //     totalPrice: 0,
@@ -16,19 +16,19 @@ class ShoppingCart extends React.Component {
   //   }
   // }
 
-  // deleteItem() {
+  // deleteproductsList() {
 
   // }
 
-  // increaseItem() {
+  // increaseproductsList() {
 
   // }
 
-  // decreaseItem() {
+  // decreaseproductsList() {
 
   // }
 
-  // sumItemQuantity(id, quantity) {
+  // sumproductsListQuantity(id, quantity) {
   //   if (!this.state[id]) {
   //     this.setState ({
   //       id: quantity,
@@ -43,7 +43,7 @@ class ShoppingCart extends React.Component {
   //   return this.state[id];
   // }
 
-  // sumItemPrice() {
+  // sumproductsListPrice() {
   // }
 
   // sumValue() {
@@ -51,6 +51,8 @@ class ShoppingCart extends React.Component {
 
   render() {
     const productsList = JSON.parse(localStorage.getItem('productsList'));
+    // const { id } = productsList;
+    // const lastItem = productsList.slice(-1).pop();
 
     if (!productsList.length) {
       return (
@@ -61,23 +63,37 @@ class ShoppingCart extends React.Component {
       );
     }
 
+
+    // if (productsList.id === id) {
+    //   return (
+    //     <div>
+    //       <Link to="/">Voltar</Link>
+    //       <div key={ lastItem.id }>
+    //         <button type="button">x</button>
+    //         <img alt="Product" src={ lastItem.thumbnail } />
+    //         <p data-testid="shopping-cart-product-name">{ lastItem.title }</p>
+    //         <button type="button">-</button>
+    //         <p data-testid="shopping-cart-product-quantity">{ lastItem.quantity }</p>
+    //         <button type="button">+</button>
+    //         <p>{ lastItem.price }</p>
+    //       </div>
+    //     </div>
+    //   )
+    // } 
+
     return (
       <div>
+        <Link to="/">Voltar</Link>
         {
-          productsList.map((item) => (
-            <div key={ item.id }>
+          productsList.map((productsList) => (
+            <div key={ productsList.id }>
               <button type="button">x</button>
-              <img key="picture" alt="Product" src={ item.thumbnail } />
-              <p key="title" data-testid="shopping-cart-product-name">{ item.title }</p>
-              <button type="button">-</button>
-              <p
-                key="quantity"
-                data-testid="shopping-cart-product-quantity"
-              >
-                { item.quantity }
-              </p>
-              <button type="button">+</button>
-              <p key="price">{ item.price }</p>
+              <img alt="Product" src={ productsList.thumbnail } />
+              <p data-testid="shopping-cart-product-name">{ productsList.title }</p>
+              <button type="button" data-testid="product-decrease-quantity">-</button>
+              <p data-testid="shopping-cart-product-quantity">{ productsList.quantity }</p>
+              <button type="button" data-testid="product-increase-quantity">+</button>
+              <p>{ productsList.price }</p>
             </div>
           ))
         }

@@ -23,7 +23,7 @@ class Home extends React.Component {
     this.fetchCategories();
     const { localStorageList } = this.state;
     if (!localStorage.getItem('productsList')) {
-      localStorage.setItem('productsList', JSON.stringify(localStorageList)); 
+      localStorage.setItem('productsList', JSON.stringify(localStorageList));
     }
   }
 

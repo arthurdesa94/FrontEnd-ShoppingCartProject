@@ -22,15 +22,17 @@ class ProductDetails extends React.Component {
   }
 
   saveStorage({ target }) {
-    let price = parseFloat(target.getAttribute('data-price'));
+    const oneNegative = -1;
+    const twoPositive = 2;
+    let price = (parseFloat(target.getAttribute('data-price'))).toFixed(twoPositive);
     const id = target.getAttribute('data-id');
     const title = target.getAttribute('data-title');
     const thumbnail = target.getAttribute('data-thumbnail');
     const products = JSON.parse(localStorage.getItem('productsList'));
     const findIndexInArray = products.findIndex((item) => item.id === id);
-    if (findIndexInArray !== -1) {
+    if (findIndexInArray !== oneNegative) {
       products[findIndexInArray].quantity += 1;
-      price = price * products[findIndexInArray].quantity;
+      price *= products[findIndexInArray].quantity;
       products[findIndexInArray].price = price;
       localStorage.setItem('productsList', JSON.stringify([...products]));
     } else {

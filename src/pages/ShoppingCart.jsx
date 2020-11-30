@@ -8,7 +8,6 @@ class ShoppingCart extends React.Component {
     this.increaseproductsList = this.increaseproductsList.bind(this);
     this.decreaseproductsList = this.decreaseproductsList.bind(this);
     this.state = {
-      totalPrice: 0,
       storage: JSON.parse(localStorage.getItem('productsList')),
     };
   }
@@ -76,9 +75,12 @@ class ShoppingCart extends React.Component {
   render() {
     const { storage } = this.state;
     const productsList = storage;
-    const totalPrice = storage.map((product => product.price)).reduce((acc, nextValue) => {
-      return acc + nextValue;
-    }, 0);
+    const magicNumber = 0;
+    const totalPrice = storage
+      .map((product => product.price))
+      .reduce((acc, nextValue) => {
+        return acc + nextValue;
+      }, magicNumber);
 
     if (!productsList.length) {
       return (

@@ -2,31 +2,42 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.deleteproductsList = this.deleteproductsList.bind(this);
-  //   this.increaseproductsList = this.increaseproductsList.bind(this);
-  //   this.decreaseproductsList = this.decreaseproductsList.bind(this);
-  //   this.sumproductsListQuantity = this.sumproductsListQuantity.bind(this);
-  //   this.sumproductsListPrice = this.sumproductsListPrice.bind(this);
-  //   this.sumValue = this.sumValue.bind(this);
-  //   this.state = {
-  //     totalPrice: 0,
-  //     list: [],
-  //   }
-  // }
+  constructor() {
+    super();
+    this.deleteproductsList = this.deleteproductsList.bind(this);
+    this.increaseproductsList = this.increaseproductsList.bind(this);
+    this.decreaseproductsList = this.decreaseproductsList.bind(this);
+    this.state = {
+      totalPrice: 0,
+      storage: JSON.parse(localStorage.getItem('productsList')),
+    }
+  }
 
-  // deleteproductsList() {
+  deleteproductsList({target}) {
+    let newArray = [];
+    const id = target.getAttribute('data-id');
+    const products = JSON.parse(localStorage.getItem('productsList'));
+    const findIndexInArray = products.findIndex((item) => item.id === id);
+    products.forEach((item, index) => {
+      if (findIndexInArray !== index) {
+        newArray.push(item);
+      }
+    })
+    localStorage.setItem('productsList', JSON.stringify(newArray));
+    /* this.forceUpdate(); */
+  }
 
-  // }
+  componentDidUpdate() {
+    
+  }
 
-  // increaseproductsList() {
+  increaseproductsList({target}) {
 
-  // }
+  }
 
-  // decreaseproductsList() {
-
-  // }
+  decreaseproductsList({target}) {
+    
+  }
 
   // sumproductsListQuantity(id, quantity) {
   //   if (!this.state[id]) {
@@ -50,8 +61,8 @@ class ShoppingCart extends React.Component {
   // }
 
   render() {
-    const productsList = JSON.parse(localStorage.getItem('productsList'));
-    // const { id } = productsList;
+    const productsList = this.state.storage;
+    /* const { id, title, thumbnail, price, quantity } = productsList; */
     // const lastItem = productsList.slice(-1).pop();
 
     if (!productsList.length) {
@@ -63,36 +74,50 @@ class ShoppingCart extends React.Component {
       );
     }
 
-
-    // if (productsList.id === id) {
-    //   return (
-    //     <div>
-    //       <Link to="/">Voltar</Link>
-    //       <div key={ lastItem.id }>
-    //         <button type="button">x</button>
-    //         <img alt="Product" src={ lastItem.thumbnail } />
-    //         <p data-testid="shopping-cart-product-name">{ lastItem.title }</p>
-    //         <button type="button">-</button>
-    //         <p data-testid="shopping-cart-product-quantity">{ lastItem.quantity }</p>
-    //         <button type="button">+</button>
-    //         <p>{ lastItem.price }</p>
-    //       </div>
-    //     </div>
-    //   )
-    // }
-
     return (
       <div>
         <Link to="/">Voltar</Link>
         {
           productsList.map((product) => (
-            <div key={ product.id }>
-              <button type="button">x</button>
+            <div key={ `${product.id}` }>
+              <button
+                data-id={product.id}
+                data-title={product.title}
+                data-thumbnail={product.thumbnail}
+                data-price={product.price}
+                data-quantity={product.quantity}
+                type="button"
+                onClick={this.deleteproductsList}
+              >
+                x
+                </button>
               <img alt="Product" src={ product.thumbnail } />
               <p data-testid="shopping-cart-product-name">{ product.title }</p>
-              <button type="button" data-testid="product-decrease-quantity">-</button>
+              <button
+                data-id={product.id}
+                data-title={product.title}
+                data-thumbnail={product.thumbnail}
+                data-price={product.price}
+                data-quantity={product.quantity}
+                type="button"
+                onClick={this.decreaseproductsList}
+                data-testid="product-decrease-quantity"
+              >
+                -
+                </button>
               <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
-              <button type="button" data-testid="product-increase-quantity">+</button>
+              <button
+                data-id={product.id}
+                data-title={product.title}
+                data-thumbnail={product.thumbnail}
+                data-price={product.price}
+                data-quantity={product.quantity}
+                type="button"
+                onClick={this.increaseproductsList}
+                data-testid="product-increase-quantity"
+              >
+                +
+                </button>
               <p>{ product.price }</p>
             </div>
           ))

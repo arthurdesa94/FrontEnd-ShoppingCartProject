@@ -22,19 +22,25 @@ class ProductDetails extends React.Component {
   }
 
   saveStorage({ target }) {
+    let price = parseFloat(target.getAttribute('data-price'));
     const id = target.getAttribute('data-id');
     const title = target.getAttribute('data-title');
     const thumbnail = target.getAttribute('data-thumbnail');
-    const price = target.getAttribute('data-price');
     const products = JSON.parse(localStorage.getItem('productsList'));
-    const foundProducts = products.filter((product) => product.id === id);
-    const quantity = foundProducts.length + 1;
-    localStorage.setItem(
-      'productsList', JSON.stringify(
+    const findIndexInArray = products.findIndex((item) => item.id === id);
+    if (findIndexInArray !== -1) {
+      products[findIndexInArray].quantity += 1;
+      price = price * products[findIndexInArray].quantity;
+      products[findIndexInArray].price = price;
+      localStorage.setItem('productsList', JSON.stringify([...products]));
+    } else {
+      const quantity = 1;
+      localStorage.setItem('productsList', JSON.stringify(
         [...products, { id, title, thumbnail, price, quantity }],
-      ),
-    );
+      ));
+    }
   }
+
 
   async fetchProductDetail() {
     const { match } = this.props;

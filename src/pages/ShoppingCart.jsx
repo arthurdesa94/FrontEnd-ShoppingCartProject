@@ -77,10 +77,8 @@ class ShoppingCart extends React.Component {
     const productsList = storage;
     const magicNumber = 0;
     const totalPrice = storage
-      .map((product => product.price))
-      .reduce((acc, nextValue) => {
-        return acc + nextValue;
-      }, magicNumber);
+      .map((product) => product.price)
+      .reduce((acc, nextValue) => acc + nextValue, magicNumber);
 
     if (!productsList.length) {
       return (

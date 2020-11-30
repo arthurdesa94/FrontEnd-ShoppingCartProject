@@ -6,19 +6,61 @@ class ProductCard extends React.Component {
   constructor() {
     super();
     this.saveStorage = this.saveStorage.bind(this);
+    // this.mergeArray = this.mergeArray.bind(this);
   }
 
   saveStorage({ target }) {
     const id = target.getAttribute('data-id');
     const title = target.getAttribute('data-title');
     const thumbnail = target.getAttribute('data-thumbnail');
-    const price = target.getAttribute('data-price');
     const products = JSON.parse(localStorage.getItem('productsList'));
-    const quantity = 1;
-    localStorage.setItem('productsList', JSON.stringify(
-      [...products, { id, title, thumbnail, price, quantity }],
-    ));
+    const foundProducts = products.filter((product) => product.id === id);
+    const quantity = foundProducts.length + 1;
+    let price = parseFloat(target.getAttribute('data-price'));
+    // const xablau = this.mergeArray(target, ...products);
+    // console.log("Found Products", foundProducts)
+    // console.log("mergeArray", xablau);
+
+    if (!products.length) {
+      localStorage.setItem('productsList', JSON.stringify(
+        [...products, { id, title, thumbnail, price, quantity }],
+      ));
+    } else {
+      const priceFound = parseFloat(target.getAttribute('data-price'));
+      const priceArray = foundProducts.map((product) => product.price);
+      const incrementPrice = [...priceArray, priceFound];
+      price = incrementPrice.reduce((acc, nextValue) => acc + nextValue);
+      // const { id, title, thumbnail, price, quantity } = lastItem;
+      // const lastItem = foundProducts[foundProducts.length - 1];
+      // console.log(lastItem);
+
+      localStorage.setItem(
+        'productsList', JSON.stringify(
+          [...products, { id, title, thumbnail, price, quantity }],
+        ),
+      );
+    }
   }
+
+  // mergeArray(target, ...products) {
+  //   return [products, target].reduce((acc, product) => {
+  //     const { id, title, thumbnail, price, quantity } = product;
+  //     console.log()
+  //     const elementId = acc.findIndex(element => element.id === id);
+  //     if (elementId !== -1) {
+  //       acc[elementId].quantity += quantity;
+  //     } else {
+  //       acc.push({
+  //         id,
+  //         title,
+  //         thumbnail,
+  //         price,
+  //         quantity,
+  //       });
+  //     }
+  //     return acc;
+  //   }, []);
+  // }
 
   render() {
     const { product } = this.props;

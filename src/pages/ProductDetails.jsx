@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import shoppingCart from '../img/shopping-cart.png';
+import Evaluation from '../components/Evaluation';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -26,7 +27,8 @@ class ProductDetails extends React.Component {
     const thumbnail = target.getAttribute('data-thumbnail');
     const price = target.getAttribute('data-price');
     const products = JSON.parse(localStorage.getItem('productsList'));
-    const quantity = 1;
+    const foundProducts = products.filter((product) => product.id === id);
+    const quantity = foundProducts.length + 1;
     localStorage.setItem(
       'productsList', JSON.stringify(
         [...products, { id, title, thumbnail, price, quantity }],
@@ -79,6 +81,8 @@ class ProductDetails extends React.Component {
           >
             Adicionar ao carrinho
           </button>
+          <Evaluation />
+          {/* productId={id} */}
         </div>
       </div>
     );

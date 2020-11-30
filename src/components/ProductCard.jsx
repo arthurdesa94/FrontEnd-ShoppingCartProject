@@ -9,7 +9,7 @@ class ProductCard extends React.Component {
   }
 
   saveStorage({ target }) {
-    let price = parseFloat(target.getAttribute('data-price'));
+    let price = (parseFloat(target.getAttribute('data-price'))).toFixed(2);
     const id = target.getAttribute('data-id');
     const title = target.getAttribute('data-title');
     const thumbnail = target.getAttribute('data-thumbnail');

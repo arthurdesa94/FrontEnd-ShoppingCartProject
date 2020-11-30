@@ -24,7 +24,7 @@ class Home extends React.Component {
     const { localStorageList } = this.state;
     if (!localStorage.getItem('productsList')) {
       localStorage.setItem('productsList', JSON.stringify(localStorageList)); 
-    }
+    };
   }
 
   onSearchTextChange(event) {

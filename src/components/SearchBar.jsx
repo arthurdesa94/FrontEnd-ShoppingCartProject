@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
         </Link>
       </div>
     );
-  }
+  };
 }
 
 SearchBar.propTypes = {

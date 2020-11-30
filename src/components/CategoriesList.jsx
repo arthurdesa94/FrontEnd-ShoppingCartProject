@@ -26,7 +26,7 @@ class CategoriesList extends React.Component {
         </ul>
       </div>
     );
-  }
+  };
 }
 
 CategoriesList.propTypes = {

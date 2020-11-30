@@ -13,7 +13,7 @@ class ShoppingCart extends React.Component {
     }
   }
 
-  deleteproductsList({target}) {
+  deleteproductsList({ target }) {
     let newArray = [];
     const id = target.getAttribute('data-id');
     const products = JSON.parse(localStorage.getItem('productsList'));
@@ -24,38 +24,38 @@ class ShoppingCart extends React.Component {
       }
     })
     localStorage.setItem('productsList', JSON.stringify(newArray));
-    /* this.forceUpdate(); */
+    this.setState({
+      storage: newArray,
+    })
   }
 
-  componentDidUpdate() {
-    
+  increaseproductsList({ target }) {
+    const id = target.getAttribute('data-id');
+    const products = JSON.parse(localStorage.getItem('productsList'));
+    const findIndexInArray = products.findIndex((item) => item.id === id);
+    let price = ((parseFloat(target.getAttribute('data-price')) / parseInt(target.getAttribute('data-quantity')))).toFixed(2);
+    products[findIndexInArray].quantity += 1;
+    price = price * products[findIndexInArray].quantity;
+    products[findIndexInArray].price = price;
+    localStorage.setItem('productsList', JSON.stringify(products));
+    this.setState({
+      storage: JSON.parse(localStorage.getItem('productsList')),
+    })
   }
 
-  increaseproductsList({target}) {
-
+  decreaseproductsList({ target }) {
+    const id = target.getAttribute('data-id');
+    const products = JSON.parse(localStorage.getItem('productsList'));
+    const findIndexInArray = products.findIndex((item) => item.id === id);
+    let price = ((parseFloat(target.getAttribute('data-price')) / parseInt(target.getAttribute('data-quantity')))).toFixed(2);
+    products[findIndexInArray].quantity -= 1;
+    price = price * (products[findIndexInArray].quantity);
+    products[findIndexInArray].price = price;
+    localStorage.setItem('productsList', JSON.stringify(products));
+    this.setState({
+      storage: JSON.parse(localStorage.getItem('productsList')),
+    })
   }
-
-  decreaseproductsList({target}) {
-    
-  }
-
-  // sumproductsListQuantity(id, quantity) {
-  //   if (!this.state[id]) {
-  //     this.setState ({
-  //       id: quantity,
-  //     })
-  //     return 1;
-  //   }
-  //   let quantityOfProducts = this.state[id];
-  //   const newStateValue = quantityOfProducts + 1;
-  //   this.setState({
-  //     id: newStateValue,
-  //   })
-  //   return this.state[id];
-  // }
-
-  // sumproductsListPrice() {
-  // }
 
   // sumValue() {
   // }
@@ -79,7 +79,7 @@ class ShoppingCart extends React.Component {
         <Link to="/">Voltar</Link>
         {
           productsList.map((product) => (
-            <div key={ `${product.id}` }>
+            <div key={`${product.id}`}>
               <button
                 data-id={product.id}
                 data-title={product.title}
@@ -91,8 +91,8 @@ class ShoppingCart extends React.Component {
               >
                 x
                 </button>
-              <img alt="Product" src={ product.thumbnail } />
-              <p data-testid="shopping-cart-product-name">{ product.title }</p>
+              <img alt="Product" src={product.thumbnail} />
+              <p data-testid="shopping-cart-product-name">{product.title}</p>
               <button
                 data-id={product.id}
                 data-title={product.title}
@@ -105,7 +105,7 @@ class ShoppingCart extends React.Component {
               >
                 -
                 </button>
-              <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
+              <p data-testid="shopping-cart-product-quantity">{product.quantity}</p>
               <button
                 data-id={product.id}
                 data-title={product.title}
@@ -118,7 +118,7 @@ class ShoppingCart extends React.Component {
               >
                 +
                 </button>
-              <p>{ product.price }</p>
+              <p>{product.price}</p>
             </div>
           ))
         }

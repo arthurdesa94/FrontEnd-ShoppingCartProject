@@ -7,7 +7,6 @@ class ShoppingCart extends React.Component {
     this.deleteproductsList = this.deleteproductsList.bind(this);
     this.increaseproductsList = this.increaseproductsList.bind(this);
     this.decreaseproductsList = this.decreaseproductsList.bind(this);
-    /* this.sumValue = this.sumValue.bind(this); */
     this.state = {
       totalPrice: 0,
       storage: JSON.parse(localStorage.getItem('productsList')),
@@ -28,7 +27,6 @@ class ShoppingCart extends React.Component {
     this.setState({
       storage: newArray,
     });
-    /* this.sumValue(); */
   }
 
   increaseproductsList({ target }) {
@@ -50,7 +48,6 @@ class ShoppingCart extends React.Component {
     this.setState({
       storage: JSON.parse(localStorage.getItem('productsList')),
     });
-    /* this.sumValue(); */
   }
 
   decreaseproductsList({ target }) {
@@ -74,20 +71,7 @@ class ShoppingCart extends React.Component {
         storage: JSON.parse(localStorage.getItem('productsList')),
       });
     }
-
-    /* this.sumValue(); */
   }
-
-  /*   sumValue() {
-      const storage = this.state.storage;
-      const prices = storage.map(item => item.price);
-      const totalValue = prices.reduce((acc, nextValue) => {
-        return acc + nextValue;
-      }, 0);
-      this.setState({
-        totalPrice: totalValue,
-      })
-    } */
 
   render() {
     const { storage } = this.state;
@@ -110,46 +94,46 @@ class ShoppingCart extends React.Component {
         <Link to="/">Voltar</Link>
         {
           productsList.map((product) => (
-            <div key={`${product.id}`}>
+            <div key={ `${product.id}` }>
               <button
-                data-id={product.id}
-                data-title={product.title}
-                data-thumbnail={product.thumbnail}
-                data-price={product.price}
-                data-quantity={product.quantity}
+                data-id={ product.id }
+                data-title={ product.title }
+                data-thumbnail={ product.thumbnail }
+                data-price={ product.price }
+                data-quantity={ product.quantity }
                 type="button"
-                onClick={this.deleteproductsList}
+                onClick={ this.deleteproductsList }
               >
                 x
               </button>
-              <img alt="Product" src={product.thumbnail} />
-              <p data-testid="shopping-cart-product-name">{product.title}</p>
+              <img alt="Product" src={ product.thumbnail } />
+              <p data-testid="shopping-cart-product-name">{ product.title }</p>
               <button
-                data-id={product.id}
-                data-title={product.title}
-                data-thumbnail={product.thumbnail}
-                data-price={product.price}
-                data-quantity={product.quantity}
+                data-id={ product.id }
+                data-title={ product.title }
+                data-thumbnail={ product.thumbnail }
+                data-price={ product.price }
+                data-quantity={ product.quantity }
                 type="button"
-                onClick={this.decreaseproductsList}
+                onClick={ this.decreaseproductsList }
                 data-testid="product-decrease-quantity"
               >
                 -
               </button>
-              <p data-testid="shopping-cart-product-quantity">{product.quantity}</p>
+              <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
               <button
-                data-id={product.id}
-                data-title={product.title}
-                data-thumbnail={product.thumbnail}
-                data-price={product.price}
-                data-quantity={product.quantity}
+                data-id={ product.id }
+                data-title={ product.title }
+                data-thumbnail={ product.thumbnail }
+                data-price={ product.price }
+                data-quantity={ product.quantity }
                 type="button"
-                onClick={this.increaseproductsList}
+                onClick={ this.increaseproductsList }
                 data-testid="product-increase-quantity"
               >
                 +
               </button>
-              <p>{product.price}</p>
+              <p>{ product.price }</p>
             </div>
           ))
         }

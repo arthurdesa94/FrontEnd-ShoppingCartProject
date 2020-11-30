@@ -11,7 +11,7 @@ class ProductList extends React.Component {
         { products.map((item) => <ProductCard key={ item.id } product={ item } />) }
       </div>
     );
-  };
+  }
 }
 
 ProductList.propTypes = {

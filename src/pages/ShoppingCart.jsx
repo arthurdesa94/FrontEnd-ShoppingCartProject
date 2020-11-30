@@ -37,7 +37,7 @@ class ShoppingCart extends React.Component {
     let price = (
       (
         parseFloat(
-          target.getAttribute('data-price')
+          target.getAttribute('data-price'),
         ) / parseInt(target.getAttribute('data-quantity'), 10)
       )
     ).toFixed(two);
@@ -58,7 +58,7 @@ class ShoppingCart extends React.Component {
     let price = (
       (
         parseFloat(
-          target.getAttribute('data-price')
+          target.getAttribute('data-price'),
         ) / parseInt(target.getAttribute('data-quantity'), 10)
       )
     ).toFixed(two);
@@ -107,8 +107,8 @@ class ShoppingCart extends React.Component {
               <img alt="Product" src={ product.thumbnail } />
               <p data-testid="shopping-cart-product-name">{ product.title }</p>
               <button
-                data-id={ product.id} 
-                data-title={ product.title } 
+                data-id={ product.id }
+                data-title={ product.title }
                 data-thumbnail={ product.thumbnail }
                 data-price={ product.price }
                 data-quantity={ product.quantity }
@@ -120,11 +120,11 @@ class ShoppingCart extends React.Component {
               </button>
               <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
               <button
-                data-id={ product.id } 
+                data-id={ product.id }
                 data-title={ product.title }
                 data-thumbnail={ product.thumbnail }
                 data-price={ product.price }
-                data-quantity= {product.quantity }
+                data-quantity={ product.quantity }
                 type="button"
                 onClick={ this.increaseproductsList }
                 data-testid="product-increase-quantity"

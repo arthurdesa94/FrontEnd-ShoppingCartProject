@@ -15,7 +15,7 @@ class CategoriesList extends React.Component {
                 key={ category.id }
                 data-id={ category.id }
                 onClick={ handleCategories }
-                aria-hidden="true"
+                role="presentation"
                 className="category-item"
                 data-testid="category"
               >

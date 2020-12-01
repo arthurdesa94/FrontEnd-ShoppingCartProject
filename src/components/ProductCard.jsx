@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import PropTypes, { number } from 'prop-types';
 
 class ProductCard extends React.Component {
   constructor() {
@@ -15,6 +15,9 @@ class ProductCard extends React.Component {
     const id = target.getAttribute('data-id');
     const title = target.getAttribute('data-title');
     const thumbnail = target.getAttribute('data-thumbnail');
+    const availableQuantity = (
+      parseInt(target.getAttribute('data-available-quantity'), 10)
+    );
     const products = JSON.parse(localStorage.getItem('productsList'));
     const findIndexInArray = products.findIndex((item) => item.id === id);
     if (findIndexInArray !== oneNegative) {
@@ -25,7 +28,7 @@ class ProductCard extends React.Component {
     } else {
       const quantity = 1;
       localStorage.setItem('productsList', JSON.stringify(
-        [...products, { id, title, thumbnail, price, quantity }],
+        [...products, { id, title, thumbnail, price, quantity, availableQuantity }],
       ));
     }
   }
@@ -33,7 +36,9 @@ class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
     const { category_id: categoryId } = product;
-    const { id, title, thumbnail, price } = product;
+    const { available_quantity: availableQuantity } = product;
+    const { id, title, thumbnail, price, shipping } = product;
+    const { free_shipping: freeShipping } = shipping;
 
     return (
       <div>
@@ -44,6 +49,7 @@ class ProductCard extends React.Component {
         >
           <div className="product-card" data-testid="product">
             <h4>{ title }</h4>
+            { freeShipping ? <p data-testid="free-shipping">Frete Grátis</p> : null }
             <img alt="Product" src={ thumbnail } />
             <p>{ `R$ ${price}` }</p>
           </div>
@@ -53,6 +59,7 @@ class ProductCard extends React.Component {
           data-title={ title }
           data-thumbnail={ thumbnail }
           data-price={ price }
+          data-available-quantity={ availableQuantity }
           type="button"
           data-testid="product-add-to-cart"
           onClick={ this.saveStorage }
@@ -66,9 +73,11 @@ class ProductCard extends React.Component {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.string,
+    availableQuantity: number,
   }),
 }.isRequired;
 

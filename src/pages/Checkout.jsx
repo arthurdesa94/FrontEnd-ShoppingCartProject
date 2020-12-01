@@ -153,6 +153,7 @@ class Checkout extends React.Component {
     const storedProducts = JSON.parse(localStorage.getItem('productsList'));
     const magicNumber = 0;
     const { redirect } = this.state;
+    
     const totalPrice = storedProducts
       .map((product) => product.price)
       .reduce((acc, nextValue) => acc + nextValue, magicNumber);

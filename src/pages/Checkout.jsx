@@ -58,42 +58,48 @@ class Checkout extends React.Component {
             type="text"
             placeholder="Digite seu nome completo"
             data-testid="checkout-fullname"
-            onChange={ (event) => this.formStates('name', event.target.value) } />
+            onChange={ (event) => this.formStates('name', event.target.value) }
+          />
           <label htmlFor="email">E-mail</label>
           <input
             id="email"
             type="text"
             placeholder="Digite seu e-mail"
             data-testid="checkout-email"
-            onChange={ (event) => this.formStates('email', event.target.value) } />
+            onChange={ (event) => this.formStates('email', event.target.value) }
+          />
           <label htmlFor="cpf">CPF</label>
           <input
             id="cpf"
             type="text"
             placeholder="Digite seu CPF"
             data-testid="checkout-cpf"
-            onChange={ (event) => this.formStates('cpf', event.target.value) } />
+            onChange={ (event) => this.formStates('cpf', event.target.value) }
+          />
           <label htmlFor="phone">Telefone</label>
           <input
             id="phone"
             type="text"
             placeholder="Digite seu telefone"
             data-testid="checkout-phone"
-            onChange={ (event) => this.formStates('phone', event.target.value) } />
+            onChange={ (event) => this.formStates('phone', event.target.value) }
+          />
           <label htmlFor="cep">CEP</label>
           <input
             id="cep"
             type="text"
             placeholder="Digite seu CEP"
             data-testid="checkout-cep"
-            onChange={ (event) => this.formStates('cep', event.target.value) } />
+            onChange={ (event) => this.formStates('cep', event.target.value) }
+          />
           <label htmlFor="address">Endereço</label>
           <input
             id="address"
             type="text"
             placeholder="Digite seu endereço"
             data-testid="checkout-address"
-            onChange={ (event) => this.formStates('address', event.target.value) } />
+            onChange={ (event) => this.formStates('address', event.target.value) }
+          />
         </div>
         <div>
           <p>Método de pagamento</p>

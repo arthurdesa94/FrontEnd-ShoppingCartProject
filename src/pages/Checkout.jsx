@@ -99,20 +99,33 @@ class Checkout extends React.Component {
           <p>Método de pagamento</p>
           <label htmlFor="payment">
             <p>Boleto</p>
-            <input name="payment" id="boleto" value="boleto" type="radio"
+            <input
+              name="payment"
+              id="boleto"
+              value="boleto"
+              type="radio"
               onChange={ (event) => this.formStates('payment', event.target.value) }
             />
             <img src={ boleto } alt="boleto" width="33px" />
             <p>Cartão de crédito</p>
-            <input name="payment" value="visa" type="radio"
+            <input
+              name="payment"
+              value="visa"
+              type="radio"
               onChange={ (event) => this.formStates('payment', event.target.value) }
             />
             <img src={ visa } alt="visa" width="40px" />
-            <input name="payment" value="mastercard" type="radio"
+            <input
+              name="payment"
+              value="mastercard"
+              type="radio"
               onChange={ (event) => this.formStates('payment', event.target.value) }
             />
             <img src={ mastercard } alt="mastercard " width="40px" />
-            <input name="payment" value="elo" type="radio"
+            <input
+              name="payment"
+              value="elo"
+              type="radio"
               onChange={ (event) => this.formStates('payment', event.target.value) }
             />
             <img src={ elo } alt="elo" width="40px" />

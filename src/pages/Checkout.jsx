@@ -21,15 +21,21 @@ class Checkout extends React.Component {
 
   validateForm() {
     const magicNumber = 0;
-    const isNameOk = this.state.name.length > magicNumber ? this.state.name : 'empty';
-    const isEmailOk = this.state.email.length > magicNumber ? this.state.email : 'empty';
-    const isCpfOk = this.state.cpf.length > magicNumber ? this.state.cpf: 'empty';
-    const isPhoneOk = this.state.phone.length > magicNumber ? this.state.phone : 'empty';
-    const isCepOk = this.state.cep.length > magicNumber ? this.state.cep : 'empty';
-    const isAddressOk = this.state.address.length > magicNumber ? this.state.address : 'empty';
-
+    const { name } = this.state.name;
+    const { email } = this.state.email;
+    const { cpf } = this.state.cpf;
+    const { phone } = this.state.phone;
+    const { cep } = this.state.cep;
+    const { address } = this.state.address;
+    const isNameOk = name.length > magicNumber ? name : 'empty';
+    const isEmailOk = email.length > magicNumber ? email : 'empty';
+    const isCpfOk = cpf.length > magicNumber ? cpf : 'empty';
+    const isPhoneOk = phone.length > magicNumber ? phone : 'empty';
+    const isCepOk = cep.length > magicNumber ? cep : 'empty';
+    const isAddressOk = address.length > magicNumber ? address : 'empty';
     const arrayOfStates = [isNameOk, isEmailOk, isCpfOk, isPhoneOk, isCepOk, isAddressOk];
     const validateOK = arrayOfStates.some((item) => item === 'empty');
+    
     if (!validateOK) {
       this.setState({
         name: '',

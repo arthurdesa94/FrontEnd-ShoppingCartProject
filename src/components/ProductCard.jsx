@@ -16,7 +16,7 @@ class ProductCard extends React.Component {
     const title = target.getAttribute('data-title');
     const thumbnail = target.getAttribute('data-thumbnail');
     const availableQuantity = (
-      parseInt(target.getAttribute('data-available-quantity'))
+      parseInt(target.getAttribute('data-available-quantity'), 10)
     );
     const products = JSON.parse(localStorage.getItem('productsList'));
     const findIndexInArray = products.findIndex((item) => item.id === id);

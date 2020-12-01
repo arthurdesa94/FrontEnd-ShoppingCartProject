@@ -10,7 +10,7 @@ function App() {
         <Route exact path="/" component={ Home } />
         <Route path="/shopping-cart" component={ ShoppingCart } />
         <Route path="/product/:category_id/:id" component={ ProductDetails } />
-        <Route component={NotFound} />
+        <Route component={ NotFound } />
       </Switch>
     </BrowserRouter>
   );

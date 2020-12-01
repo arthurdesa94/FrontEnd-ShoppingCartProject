@@ -133,7 +133,7 @@ class ShoppingCart extends React.Component {
                 data-quantity={ product.quantity }
                 data-available-quantity={ product.availableQuantity }
                 type="button"
-                disabled={false}
+                disabled={ false }
                 onClick={ this.increaseproductsList }
                 data-testid="product-increase-quantity"
               >

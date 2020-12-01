@@ -30,7 +30,7 @@ class ProductDetails extends React.Component {
     const title = target.getAttribute('data-title');
     const thumbnail = target.getAttribute('data-thumbnail');
     const availableQuantity = (
-      parseInt(target.getAttribute('data-available-quantity'))
+      parseInt(target.getAttribute('data-available-quantity'), 10)
     );
     const products = JSON.parse(localStorage.getItem('productsList'));
     const findIndexInArray = products.findIndex((item) => item.id === id);
@@ -55,9 +55,9 @@ class ProductDetails extends React.Component {
     const { id } = params;
     const reqProductDetail = await api.getProductsFromCategoryAndQuery(categoryId, '');
     const detailedProduct = reqProductDetail.results.find((product) => product.id === id);
-    const { shipping: { free_shipping: freeShipping} } = detailedProduct;
+    const { shipping: { free_shipping: freeShipping } } = detailedProduct;
 
-    if(freeShipping) {
+    if (freeShipping) {
       this.setState({
         loading: false,
         productDetails: reqProductDetail.results.find((product) => product.id === id),

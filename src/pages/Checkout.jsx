@@ -27,7 +27,7 @@ class Checkout extends React.Component {
     const isPhoneOk = this.state.phone.length > magicNumber ? this.state.phone : "empty";
     const isCepOk = this.state.cep.length > magicNumber ? this.state.cep : "empty";
     const isAddressOk = this.state.address.length > magicNumber ? this.state.address : "empty";
-    
+
     const arrayOfStates = [ isNameOk, isEmailOk, isCpfOk, isPhoneOk, isCepOk, isAddressOk ];
     const validateOK = arrayOfStates.some((item) => item = "empty");
     if (!validateOK) {
@@ -68,24 +68,24 @@ class Checkout extends React.Component {
         <div>
           <p>Método de pagamento</p>
           <label htmlFor="payment">
-            <div>
-              <p>Boleto</p>
-              <input name="payment" id="boleto" value="boleto" type="radio" onChange={ (event) => this.formStates('payment', event.target.value) } />
-              <img src={ boleto } alt="boleto" width="33px" />
-            </div>
-            <div>
-              <p>Cartão de crédito</p>
-              <input name="payment" value="visa" type="radio" onChange={ (event) => this.formStates('payment', event.target.value) } />
-              <img src={ visa } alt="visa" width="40px" />
-              <input name="payment" value="mastercard" type="radio" onChange={ (event) => this.formStates('payment', event.target.value) } />
-              <img src={ mastercard } alt="mastercard " width="40px" />
-              <input name="payment" value="elo" type="radio" onChange={ (event) => this.formStates('payment', event.target.value) } />
-              <img src={ elo } alt="elo" width="40px" />
-            </div>
+            <p>Boleto</p>
+            <input name="payment" id="boleto" value="boleto" type="radio"
+              onChange={ (event) => this.formStates('payment', event.target.value) } />
+            <img src={ boleto } alt="boleto" width="33px" />
+            <p>Cartão de crédito</p>
+            <input name="payment" value="visa" type="radio"
+              onChange={ (event) => this.formStates('payment', event.target.value) } />
+            <img src={ visa } alt="visa" width="40px" />
+            <input name="payment" value="mastercard" type="radio"
+              onChange={ (event) => this.formStates('payment', event.target.value) } />
+            <img src={ mastercard } alt="mastercard " width="40px" />
+            <input name="payment" value="elo" type="radio"
+              onChange={ (event) => this.formStates('payment', event.target.value) } />
+            <img src={ elo } alt="elo" width="40px" />
           </label>
         </div>
       </div>
-    )
+    );
   }
 
   render() {

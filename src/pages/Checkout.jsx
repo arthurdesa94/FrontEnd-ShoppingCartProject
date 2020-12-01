@@ -1,38 +1,123 @@
 import React from 'react';
+import  { Redirect } from 'react-router-dom';
+import boleto from '../img/boleto.png';
+import visa from '../img/visa.png';
+import mastercard from '../img/mastercard.png';
+import elo from '../img/elo.png';
 
 class Checkout extends React.Component {
   constructor() {
     super();
+    this.validateForm = this.validateForm.bind(this);
     this.state = {
-      ableToBuy = false,
+      name: '',
+      email: '',
+      cpf: '',
+      phone: '',
+      cep: '',
+      address: '',
     };
   }
 
-  renderElements() {  
+  validateForm() {
+    const magicNumber = 0;
+    const isNameOk = this.state.name.length > magicNumber ? this.state.name : "empty";
+    const isEmailOk = this.state.email.length > magicNumber ? this.state.email : "empty";
+    const isCpfOk = this.state.cpf.length > magicNumber ? this.state.cpf: "empty";
+    const isPhoneOk = this.state.phone.length > magicNumber ? this.state.phone : "empty";
+    const isCepOk = this.state.cep.length > magicNumber ? this.state.cep : "empty";
+    const isAddressOk = this.state.address.length > magicNumber ? this.state.address : "empty";
+
+    const arrayOfStates = [ isNameOk, isEmailOk, isCpfOk, isPhoneOk, isCepOk, isAddressOk ];
+    const validateOK = arrayOfStates.some((item) => item = "empty");
+    if (!validateOK) {
+      this.setState({
+        name: '',
+        email: '',
+        cpf: '',
+        phone: '',
+        cep: '',
+        address: '',
+      });
+      return <Redirect to='/' />
+    }
+  }
+
+  formStates(field, newValue) {
+    this.setState({
+      [field]: newValue 
+    });
+  }
+
+  dataForm() {
     return (
       <div>
-        <label htmlFor="name">Nome completo</label>
-        <input id="name" type="text" placeholder="Digite seu nome completo" data-testid="checkout-fullname" />
-        <label htmlFor="name">E-mail</label>
-        <input type="text" placeholder="Digite seu e-mail" data-testid="checkout-email" />
-        <label htmlFor="name">CPF</label>
-        <input type="text" placeholder="Digite seu CPF" data-testid="checkout-cpf" />
-        <label htmlFor="name">Telefone</label>
-        <input type="text" placeholder="Digite seu telefone" data-testid="checkout-phone" />
-        <label htmlFor="name">CEP</label>
-        <input type="text" placeholder="Digite seu CEP" data-testid="checkout-cep" />
-        <label htmlFor="name">Endereço</label>
-        <input type="text" placeholder="Digite seu endereço" data-testid="checkout-address" />
-        <button type="submit">Finalizar a compra</button>
+        <div>
+          <p>Informações do comprador</p>
+          <label htmlFor="name">Nome completo</label>
+          <input id="name" type="text" placeholder="Digite seu nome completo" data-testid="checkout-fullname" onChange={(event) => this.formStates('name', event.target.value)} />
+          <label htmlFor="email">E-mail</label>
+          <input id="email" type="text" placeholder="Digite seu e-mail" data-testid="checkout-email" onChange={(event) => this.formStates('email', event.target.value)} />
+          <label htmlFor="cpf">CPF</label>
+          <input id="cpf" type="text" placeholder="Digite seu CPF" data-testid="checkout-cpf" onChange={(event) => this.formStates('cpf', event.target.value)} />
+          <label htmlFor="phone">Telefone</label>
+          <input id="phone" type="text" placeholder="Digite seu telefone" data-testid="checkout-phone" onChange={(event) => this.formStates('phone', event.target.value)} />
+          <label htmlFor="cep">CEP</label>
+          <input id="cep" type="text" placeholder="Digite seu CEP" data-testid="checkout-cep" onChange={(event) => this.formStates('cep', event.target.value)} />
+          <label htmlFor="address">Endereço</label>
+          <input id="address" type="text" placeholder="Digite seu endereço" data-testid="checkout-address" onChange={(event) => this.formStates('address', event.target.value)} />
+        </div>
+        <div>
+          <p>Método de pagamento</p>
+          <label htmlFor="payment">
+            <div>
+              <p>Boleto</p>
+              <input name="payment" id="boleto" value="boleto" type="radio" onChange={(event) => this.formStates('payment', event.target.value)} />
+              <img src={ boleto } alt="boleto" width="33px" />
+            </div>
+            <div>
+              <p>Cartão de crédito</p>
+              <input name="payment" value="visa" type="radio" onChange={(event) => this.formStates('payment', event.target.value)} />
+              <img src={ visa } alt="visa" width="40px" />
+              <input name="payment" value="mastercard" type="radio" onChange={(event) => this.formStates('payment', event.target.value)} />
+              <img src={ mastercard } alt="mastercard " width="40px" />
+              <input name="payment" value="elo" type="radio" onChange={(event) => this.formStates('payment', event.target.value)} />
+              <img src={ elo } alt="elo" width="40px" />
+            </div>
+          </label>
+        </div>
       </div>
     )
   }
+
   render() {
+    const storedProducts = JSON.parse(localStorage.getItem('productsList'));
+    const magicNumber = 0;
+    const totalPrice = storedProducts
+      .map((product) => product.price)
+      .reduce((acc, nextValue) => acc + nextValue, magicNumber);
+
     return (
       <div>
-        <form>
-          {this.renderElements()}
-        </form>
+        <div>
+          <form>
+            {this.dataForm()}
+          </form>
+        </div>
+        <div>
+          <p>Revise seus produtos</p>
+          {storedProducts.map((product => (
+            <div key={`${product.id}`}>
+              <img alt="Product" src={product.thumbnail} />
+              <p data-testid="shopping-cart-product-name">{product.title}</p>
+              <p data-testid="shopping-cart-product-quantity">{product.quantity}</p>
+              <p>{product.price}</p>
+            </div>
+          )))}
+        </div>
+
+        <div>{totalPrice}</div>
+        <button type="submit" onClick={ this.validateForm }>Comprar</button>
       </div>
     )
   }

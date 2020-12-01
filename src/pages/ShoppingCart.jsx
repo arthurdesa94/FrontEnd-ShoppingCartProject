@@ -30,6 +30,7 @@ class ShoppingCart extends React.Component {
 
   increaseproductsList({ target }) {
     const id = target.getAttribute('data-id');
+    const availableQuantity = target.getAttribute('data-available-quantity');
     const products = JSON.parse(localStorage.getItem('productsList'));
     const findIndexInArray = products.findIndex((item) => item.id === id);
     const two = 2;
@@ -40,13 +41,18 @@ class ShoppingCart extends React.Component {
         ) / parseInt(target.getAttribute('data-quantity'), 10)
       )
     ).toFixed(two);
-    products[findIndexInArray].quantity += 1;
-    price *= products[findIndexInArray].quantity;
-    products[findIndexInArray].price = price;
-    localStorage.setItem('productsList', JSON.stringify(products));
-    this.setState({
-      storage: JSON.parse(localStorage.getItem('productsList')),
-    });
+
+    if ((products[findIndexInArray].quantity) < availableQuantity) {
+      products[findIndexInArray].quantity += 1;
+      parseInt(price *= products[findIndexInArray].quantity, 10).toFixed(two);
+      products[findIndexInArray].price = price;
+      localStorage.setItem('productsList', JSON.stringify(products));
+      this.setState({
+        storage: JSON.parse(localStorage.getItem('productsList')),
+      });
+    } else {
+      target.disabled = true;
+    }
   }
 
   decreaseproductsList({ target }) {
@@ -127,7 +133,9 @@ class ShoppingCart extends React.Component {
                 data-thumbnail={ product.thumbnail }
                 data-price={ product.price }
                 data-quantity={ product.quantity }
+                data-available-quantity={ product.availableQuantity }
                 type="button"
+                disabled={ false }
                 onClick={ this.increaseproductsList }
                 data-testid="product-increase-quantity"
               >

@@ -21,12 +21,7 @@ class Checkout extends React.Component {
 
   validateForm() {
     const magicNumber = 0;
-    const { name } = this.state.name;
-    const { email } = this.state.email;
-    const { cpf } = this.state.cpf;
-    const { phone } = this.state.phone;
-    const { cep } = this.state.cep;
-    const { address } = this.state.address;
+    const { name, email, cpf, phone, cep, address } = this.state;
     const isNameOk = name.length > magicNumber ? name : 'empty';
     const isEmailOk = email.length > magicNumber ? email : 'empty';
     const isCpfOk = cpf.length > magicNumber ? cpf : 'empty';
@@ -35,7 +30,7 @@ class Checkout extends React.Component {
     const isAddressOk = address.length > magicNumber ? address : 'empty';
     const arrayOfStates = [isNameOk, isEmailOk, isCpfOk, isPhoneOk, isCepOk, isAddressOk];
     const validateOK = arrayOfStates.some((item) => item === 'empty');
-    
+
     if (!validateOK) {
       this.setState({
         name: '',

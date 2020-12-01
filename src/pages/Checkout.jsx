@@ -54,7 +54,8 @@ class Checkout extends React.Component {
       <div>
         <div>
           <p>Informações do comprador</p>
-          <label htmlFor="name">Nome completo
+          <label htmlFor="name">
+            Nome completo
             <input
               id="name"
               type="text"
@@ -63,7 +64,8 @@ class Checkout extends React.Component {
               onChange={ (event) => this.formStates('name', event.target.value) }
             />
           </label>
-          <label htmlFor="email">E-mail
+          <label htmlFor="email">
+            E-mail
             <input
               id="email"
               type="text"
@@ -72,7 +74,8 @@ class Checkout extends React.Component {
               onChange={ (event) => this.formStates('email', event.target.value) }
             />
           </label>
-          <label htmlFor="cpf">CPF
+          <label htmlFor="cpf">
+            CPF
             <input
               id="cpf"
               type="text"
@@ -81,7 +84,8 @@ class Checkout extends React.Component {
               onChange={ (event) => this.formStates('cpf', event.target.value) }
             />
           </label>
-          <label htmlFor="phone">Telefone
+          <label htmlFor="phone">
+            Telefone
             <input
               id="phone"
               type="text"
@@ -90,7 +94,8 @@ class Checkout extends React.Component {
               onChange={ (event) => this.formStates('phone', event.target.value) }
             />
           </label>
-          <label htmlFor="cep">CEP
+          <label htmlFor="cep">
+            CEP
             <input
               id="cep"
               type="text"
@@ -99,7 +104,8 @@ class Checkout extends React.Component {
               onChange={ (event) => this.formStates('cep', event.target.value) }
             />
           </label>
-          <label htmlFor="address">Endereço
+          <label htmlFor="address">
+            Endereço
             <input
               id="address"
               type="text"
@@ -153,7 +159,7 @@ class Checkout extends React.Component {
     const storedProducts = JSON.parse(localStorage.getItem('productsList'));
     const magicNumber = 0;
     const { redirect } = this.state;
-    
+
     const totalPrice = storedProducts
       .map((product) => product.price)
       .reduce((acc, nextValue) => acc + nextValue, magicNumber);

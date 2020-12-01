@@ -146,7 +146,10 @@ class ShoppingCart extends React.Component {
           ))
         }
         <p>{ totalPrice }</p>
-        <button type="submit">Finalizar a compra</button>
+        <Link to="/checkout" data-testid="checkout-products">
+          Finalizar a compra
+        </Link>
+        {/* <button type="submit">Finalizar a compra</button> */}
       </div>
     );
   }

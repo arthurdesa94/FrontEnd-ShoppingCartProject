@@ -1,5 +1,5 @@
 import React from 'react';
-import  { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import boleto from '../img/boleto.png';
 import visa from '../img/visa.png';
 import mastercard from '../img/mastercard.png';
@@ -16,6 +16,7 @@ class Checkout extends React.Component {
       phone: '',
       cep: '',
       address: '',
+      redirect: false,
     };
   }
 
@@ -39,8 +40,8 @@ class Checkout extends React.Component {
         phone: '',
         cep: '',
         address: '',
+        redirect: true,
       });
-      return <Redirect to="/" />;
     }
   }
 
@@ -148,6 +149,10 @@ class Checkout extends React.Component {
     const totalPrice = storedProducts
       .map((product) => product.price)
       .reduce((acc, nextValue) => acc + nextValue, magicNumber);
+    
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div>

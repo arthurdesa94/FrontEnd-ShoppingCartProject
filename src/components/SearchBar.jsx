@@ -7,7 +7,8 @@ class SearchBar extends React.Component {
   render() {
     const { onSearchTextChange, onClickAPI } = this.props;
     const storage = JSON.parse(localStorage.getItem('productsList'));
-    const cartQuantity = storage.map((item) => item.quantity).reduce((acc, nextValue) => acc + nextValue, 0);
+    const cartQuantity = storage.map((item) => item.quantity)
+    .reduce((acc, nextValue) => acc + nextValue, 0);
 
     return (
       <div className="search-bar">

@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
 import Checkout from './pages/Checkout';
-/* import NotFound from './pages/NotFound'; */
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/shopping-cart" component={ ShoppingCart } />
         <Route path="/checkout" component={ Checkout } />
         <Route path="/product/:category_id/:id" component={ ProductDetails } />
-        {/* <Route component={ NotFound } /> */}
+        <Route component={ NotFound } />
       </Switch>
     </BrowserRouter>
   );

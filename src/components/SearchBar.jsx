@@ -6,6 +6,8 @@ import shoppingCart from '../img/shopping-cart.png';
 class SearchBar extends React.Component {
   render() {
     const { onSearchTextChange, onClickAPI } = this.props;
+    const storage = JSON.parse(localStorage.getItem('productsList'));
+    const cartQuantity = storage.map((item) => item.quantity).reduce((acc, nextValue) => acc + nextValue, 0);
 
     return (
       <div className="search-bar">
@@ -25,6 +27,7 @@ class SearchBar extends React.Component {
         </form>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
           <img src={ shoppingCart } alt="Shopping Cart Icon" />
+          <p data-testid="shopping-cart-size">{ cartQuantity }</p>
         </Link>
       </div>
     );

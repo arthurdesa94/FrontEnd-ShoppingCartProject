@@ -76,8 +76,10 @@ class ProductDetails extends React.Component {
     const { productDetails, loading, freeShipping } = this.state;
     const { available_quantity: availableQuantity } = productDetails;
     const { id, title, thumbnail, price } = productDetails;
+    const magicNumber = 0;
     const storage = JSON.parse(localStorage.getItem('productsList'));
-    const cartQuantity = storage.map((item) => item.quantity).reduce((acc, nextValue) => acc + nextValue, 0);
+    const cartQuantity = storage.map((item) => item.quantity)
+      .reduce((acc, nextValue) => acc + nextValue, magicNumber);
 
     if (loading) {
       return <p>Loading...</p>;

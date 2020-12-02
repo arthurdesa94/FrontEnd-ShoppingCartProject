@@ -76,7 +76,7 @@ class ProductDetails extends React.Component {
     const { productDetails, loading, freeShipping } = this.state;
     const { available_quantity: availableQuantity } = productDetails;
     const { id, title, thumbnail, price } = productDetails;
-/*     const magicNumber = 0;
+    /* const magicNumber = 0;
     const storage = JSON.parse(localStorage.getItem('productsList'));
     const cartQuantity = storage.map((item) => item.quantity)
       .reduce((acc, nextValue) => acc + nextValue, magicNumber); */
@@ -90,7 +90,7 @@ class ProductDetails extends React.Component {
         <Link to="/">Voltar</Link>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
           <img src={ shoppingCart } alt="Shopping Cart Icon" />
-{/*           <p data-testid="shopping-cart-size">{ cartQuantity }</p> */}
+          {/* <p data-testid="shopping-cart-size">{ cartQuantity }</p> */}
         </Link>
         <div>
           <img alt="Product" src={ thumbnail } />

@@ -16,6 +16,7 @@ class Home extends React.Component {
       categories: [],
       selectedCategory: [],
       localStorageList: [],
+      cartQuantity: 0,
     };
   }
 

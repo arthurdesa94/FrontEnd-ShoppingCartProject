@@ -76,10 +76,11 @@ class ProductDetails extends React.Component {
     const { productDetails, loading, freeShipping } = this.state;
     const { available_quantity: availableQuantity } = productDetails;
     const { id, title, thumbnail, price } = productDetails;
-    /* const magicNumber = 0;
+    const magicNumber = 0;
     const storage = JSON.parse(localStorage.getItem('productsList'));
-    const cartQuantity = storage.map((item) => item.quantity)
-      .reduce((acc, nextValue) => acc + nextValue, magicNumber); */
+    const itemQuantity = storage.map((item) => item.quantity)
+      .reduce((acc, nextValue) => acc + nextValue, magicNumber);
+    const cartQuantity = (storage) ? itemQuantity : magicNumber;
 
     if (loading) {
       return <p>Loading...</p>;
@@ -90,7 +91,7 @@ class ProductDetails extends React.Component {
         <Link to="/">Voltar</Link>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
           <img src={ shoppingCart } alt="Shopping Cart Icon" />
-          {/* <p data-testid="shopping-cart-size">{ cartQuantity }</p> */}
+          <span data-testid="shopping-cart-size">{ cartQuantity }</span>
         </Link>
         <div>
           <img alt="Product" src={ thumbnail } />

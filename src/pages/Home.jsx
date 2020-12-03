@@ -16,7 +16,7 @@ class Home extends React.Component {
       productList: [],
       categories: [],
       selectedCategory: [],
-      cartQuantity: 0,
+      cartQuantity: '',
       storage: JSON.parse(localStorage.getItem('productsList')),
     };
   }
@@ -90,17 +90,17 @@ class Home extends React.Component {
       price *= products[findIndexInArray].quantity;
       products[findIndexInArray].price = price;
       localStorage.setItem('productsList', JSON.stringify([...products]));
-        this.setState({
+      this.setState({
         storage: JSON.parse(localStorage.getItem('productsList')),
-      })
+      });
     } else {
       const quantity = 1;
       localStorage.setItem('productsList', JSON.stringify(
         [...products, { id, title, thumbnail, price, quantity, availableQuantity }],
       ));
-        this.setState({
+      this.setState({
         storage: JSON.parse(localStorage.getItem('productsList')),
-      })
+      });
     }
   }
 
@@ -125,7 +125,8 @@ class Home extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <CategoriesList handleCategories={ this.handleEvent } categories={ categories } />
-        { message ? noProduct : <ProductList newStorageState1={ this.saveStorage } products={ productList } /> }
+        { message ? noProduct :
+        <ProductList newStorageState1={ this.saveStorage } products={ productList } /> }
       </div>
     );
   }

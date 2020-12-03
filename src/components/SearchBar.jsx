@@ -5,8 +5,7 @@ import shoppingCart from '../img/shopping-cart.png';
 
 class SearchBar extends React.Component {
   render() {
-    const { onSearchTextChange, onClickAPI } = this.props;
-    const { cartQuantity } = this.props;
+    const { onSearchTextChange, onClickAPI, cartQuantity } = this.props;
 
     return (
       <div className="search-bar">
@@ -36,6 +35,7 @@ class SearchBar extends React.Component {
 SearchBar.propTypes = {
   onSearchTextChange: PropTypes.func.isRequired,
   onClickAPI: PropTypes.func.isRequired,
+  cartQuantity: PropTypes.number.isRequired,
 };
 
 export default SearchBar;

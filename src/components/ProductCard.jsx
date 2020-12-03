@@ -32,7 +32,7 @@ class ProductCard extends React.Component {
           data-available-quantity={ availableQuantity }
           type="button"
           data-testid="product-add-to-cart"
-          onClick={(event) => newStorageState2(event) }
+          onClick={ (event) => newStorageState2(event) }
         >
           Adicionar ao carrinho
         </button>

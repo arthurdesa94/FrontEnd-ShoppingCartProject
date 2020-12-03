@@ -41,7 +41,7 @@ class ProductDetails extends React.Component {
       localStorage.setItem('productsList', JSON.stringify([...products]));
       this.setState({
         storage: JSON.parse(localStorage.getItem('productsList')),
-      })
+      });
     } else {
       const quantity = 1;
       localStorage.setItem('productsList', JSON.stringify(
@@ -49,7 +49,7 @@ class ProductDetails extends React.Component {
       ));
       this.setState({
         storage: JSON.parse(localStorage.getItem('productsList')),
-      })
+      });
     }
   }
 
@@ -75,7 +75,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { productDetails, loading, freeShipping } = this.state;
+    const { productDetails, freeShipping } = this.state;
     const { available_quantity: availableQuantity } = productDetails;
     const { id, title, thumbnail, price } = productDetails;
     const magicNumber = 0;

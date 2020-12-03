@@ -10,9 +10,9 @@ class ProductDetails extends React.Component {
     super();
 
     this.state = {
-      loading: true,
       productDetails: [],
       freeShipping: false,
+      storage: JSON.parse(localStorage.getItem('productsList')),
     };
     this.saveStorage = this.saveStorage.bind(this);
     this.fetchProductDetail = this.fetchProductDetail.bind(this);
@@ -39,14 +39,19 @@ class ProductDetails extends React.Component {
       price *= products[findIndexInArray].quantity;
       products[findIndexInArray].price = price;
       localStorage.setItem('productsList', JSON.stringify([...products]));
+      this.setState({
+        storage: JSON.parse(localStorage.getItem('productsList')),
+      });
     } else {
       const quantity = 1;
       localStorage.setItem('productsList', JSON.stringify(
         [...products, { id, title, thumbnail, price, quantity, availableQuantity }],
       ));
+      this.setState({
+        storage: JSON.parse(localStorage.getItem('productsList')),
+      });
     }
   }
-
 
   async fetchProductDetail() {
     const { match } = this.props;
@@ -56,16 +61,13 @@ class ProductDetails extends React.Component {
     const reqProductDetail = await api.getProductsFromCategoryAndQuery(categoryId, '');
     const detailedProduct = reqProductDetail.results.find((product) => product.id === id);
     const { shipping: { free_shipping: freeShipping } } = detailedProduct;
-
     if (freeShipping) {
       this.setState({
-        loading: false,
         productDetails: reqProductDetail.results.find((product) => product.id === id),
         freeShipping: true,
       });
     } else {
       this.setState({
-        loading: false,
         productDetails: reqProductDetail.results.find((product) => product.id === id),
         freeShipping: false,
       });
@@ -73,13 +75,14 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { productDetails, loading, freeShipping } = this.state;
+    const { productDetails, freeShipping } = this.state;
     const { available_quantity: availableQuantity } = productDetails;
     const { id, title, thumbnail, price } = productDetails;
-
-    if (loading) {
-      return <p>Loading...</p>;
-    }
+    const magicNumber = 0;
+    const { storage } = this.state;
+    const itemQuantity = storage.map((item) => item.quantity)
+      .reduce((acc, nextValue) => acc + nextValue, magicNumber);
+    const cartQuantity = (storage) ? itemQuantity : magicNumber;
 
     return (
       <div>
@@ -87,6 +90,7 @@ class ProductDetails extends React.Component {
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
           <img src={ shoppingCart } alt="Shopping Cart Icon" />
         </Link>
+        <span data-testid="shopping-cart-size">{ cartQuantity }</span>
         <div>
           <img alt="Product" src={ thumbnail } />
           <div className="movie-card-body">
@@ -108,7 +112,6 @@ class ProductDetails extends React.Component {
             Adicionar ao carrinho
           </button>
           <Evaluation />
-          {/* productId={id} */}
         </div>
       </div>
     );

@@ -9,6 +9,7 @@ class Checkout extends React.Component {
   constructor() {
     super();
     this.validateForm = this.validateForm.bind(this);
+    this.dataForm = this.dataForm.bind(this);
     this.state = {
       name: '',
       email: '',
@@ -17,6 +18,7 @@ class Checkout extends React.Component {
       cep: '',
       address: '',
       redirect: false,
+      filled: true,
     };
   }
 
@@ -42,6 +44,10 @@ class Checkout extends React.Component {
         address: '',
         redirect: true,
       });
+    } else {
+      this.setState({
+        filled: false,
+      });
     }
   }
 
@@ -50,6 +56,8 @@ class Checkout extends React.Component {
   }
 
   dataForm() {
+    const { filled } = this.state;
+
     return (
       <div>
         <div>
@@ -58,6 +66,7 @@ class Checkout extends React.Component {
             Nome completo
             <input
               id="name"
+              className={ filled === true ? 'formFilled' : 'formNotFilled' }
               type="text"
               placeholder="Digite seu nome completo"
               data-testid="checkout-fullname"
@@ -68,6 +77,7 @@ class Checkout extends React.Component {
             E-mail
             <input
               id="email"
+              className={ filled === true ? 'formFilled' : 'formNotFilled' }
               type="text"
               placeholder="Digite seu e-mail"
               data-testid="checkout-email"
@@ -78,6 +88,7 @@ class Checkout extends React.Component {
             CPF
             <input
               id="cpf"
+              className={ filled === true ? 'formFilled' : 'formNotFilled' }
               type="text"
               placeholder="Digite seu CPF"
               data-testid="checkout-cpf"
@@ -88,6 +99,7 @@ class Checkout extends React.Component {
             Telefone
             <input
               id="phone"
+              className={ filled === true ? 'formFilled' : 'formNotFilled' }
               type="text"
               placeholder="Digite seu telefone"
               data-testid="checkout-phone"
@@ -98,6 +110,7 @@ class Checkout extends React.Component {
             CEP
             <input
               id="cep"
+              className={ filled === true ? 'formFilled' : 'formNotFilled' }
               type="text"
               placeholder="Digite seu CEP"
               data-testid="checkout-cep"
@@ -108,6 +121,7 @@ class Checkout extends React.Component {
             Endereço
             <input
               id="address"
+              className={ filled === true ? 'formFilled' : 'formNotFilled' }
               type="text"
               placeholder="Digite seu endereço"
               data-testid="checkout-address"
@@ -115,7 +129,7 @@ class Checkout extends React.Component {
             />
           </label>
         </div>
-        <div>
+        <div className={ filled === true ? 'formRadioFilled' : 'formNotFilled' }>
           <p>Método de pagamento</p>
           <label htmlFor="payment">
             <p>Boleto</p>
@@ -156,10 +170,9 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const storedProducts = JSON.parse(localStorage.getItem('productsList'));
     const magicNumber = 0;
+    const storedProducts = JSON.parse(localStorage.getItem('productsList'));
     const { redirect } = this.state;
-
     const totalPrice = storedProducts
       .map((product) => product.price)
       .reduce((acc, nextValue) => acc + nextValue, magicNumber);

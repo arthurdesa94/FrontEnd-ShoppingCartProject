@@ -111,3 +111,11 @@ h1 {
 .formNotFilled {
   border: 2px solid red;
 }
+
+.formFilled {
+  border: 1px solid black;
+}
+
+.formRadioFilled {
+  border: none;
+}

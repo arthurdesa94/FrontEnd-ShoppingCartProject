@@ -3,38 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes, { number } from 'prop-types';
 
 class ProductCard extends React.Component {
-  constructor() {
-    super();
-    this.saveStorage = this.saveStorage.bind(this);
-  }
-
-  saveStorage({ target }) {
-    const oneNegative = -1;
-    const twoPositive = 2;
-    let price = (parseFloat(target.getAttribute('data-price'))).toFixed(twoPositive);
-    const id = target.getAttribute('data-id');
-    const title = target.getAttribute('data-title');
-    const thumbnail = target.getAttribute('data-thumbnail');
-    const availableQuantity = (
-      parseInt(target.getAttribute('data-available-quantity'), 10)
-    );
-    const products = JSON.parse(localStorage.getItem('productsList'));
-    const findIndexInArray = products.findIndex((item) => item.id === id);
-    if (findIndexInArray !== oneNegative) {
-      products[findIndexInArray].quantity += 1;
-      price *= products[findIndexInArray].quantity;
-      products[findIndexInArray].price = price;
-      localStorage.setItem('productsList', JSON.stringify([...products]));
-    } else {
-      const quantity = 1;
-      localStorage.setItem('productsList', JSON.stringify(
-        [...products, { id, title, thumbnail, price, quantity, availableQuantity }],
-      ));
-    }
-  }
-
   render() {
-    const { product } = this.props;
+    const { product, newStorageState2 } = this.props;
     const { category_id: categoryId } = product;
     const { available_quantity: availableQuantity } = product;
     const { id, title, thumbnail, price, shipping } = product;
@@ -62,7 +32,7 @@ class ProductCard extends React.Component {
           data-available-quantity={ availableQuantity }
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ this.saveStorage }
+          onClick={ (event) => newStorageState2(event) }
         >
           Adicionar ao carrinho
         </button>

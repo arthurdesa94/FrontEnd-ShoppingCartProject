@@ -84,6 +84,7 @@ class Home extends React.Component {
     );
     const products = JSON.parse(localStorage.getItem('productsList'));
     const findIndexInArray = products.findIndex((item) => item.id === id);
+    
     if (findIndexInArray !== oneNegative) {
       products[findIndexInArray].quantity += 1;
       price *= products[findIndexInArray].quantity;

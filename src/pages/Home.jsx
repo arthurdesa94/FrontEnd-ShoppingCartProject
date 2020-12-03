@@ -84,7 +84,7 @@ class Home extends React.Component {
     );
     const products = JSON.parse(localStorage.getItem('productsList'));
     const findIndexInArray = products.findIndex((item) => item.id === id);
-    
+
     if (findIndexInArray !== oneNegative) {
       products[findIndexInArray].quantity += 1;
       price *= products[findIndexInArray].quantity;
@@ -124,9 +124,14 @@ class Home extends React.Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <CategoriesList handleCategories={ this.handleEvent } categories={ categories } />
-        { message ? noProduct
-          : <ProductList newStorageState1={ this.saveStorage } products={ productList } /> }
+        <CategoriesList
+          handleCategories={ this.handleEvent }
+          categories={ categories }
+        />
+        { message ? noProduct : <ProductList
+          newStorageState1={ this.saveStorage }
+          products={ productList }
+          /> }
       </div>
     );
   }

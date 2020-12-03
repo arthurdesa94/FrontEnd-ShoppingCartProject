@@ -6,11 +6,7 @@ import shoppingCart from '../img/shopping-cart.png';
 class SearchBar extends React.Component {
   render() {
     const { onSearchTextChange, onClickAPI } = this.props;
-    const magicNumber = 0;
-    const storage = JSON.parse(localStorage.getItem('productsList'));
-    const itemQuantity = storage.map((item) => item.quantity)
-      .reduce((acc, nextValue) => acc + nextValue, magicNumber);
-    const cartQuantity = (storage) ? itemQuantity : magicNumber;
+    const { cartQuantity } = this.props;
 
     return (
       <div className="search-bar">

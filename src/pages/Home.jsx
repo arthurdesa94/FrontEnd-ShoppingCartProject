@@ -10,22 +10,19 @@ class Home extends React.Component {
     this.handleCategories = this.handleCategories.bind(this);
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.fetchProductsQuery = this.fetchProductsQuery.bind(this);
+    this.saveStorage = this.saveStorage.bind(this);
     this.state = {
       searchText: '',
       productList: [],
       categories: [],
       selectedCategory: [],
-      localStorageList: [],
       cartQuantity: 0,
+      storage: JSON.parse(localStorage.getItem('productsList')),
     };
   }
 
   componentDidMount() {
     this.fetchCategories();
-    const { localStorageList } = this.state;
-    if (!localStorage.getItem('productsList')) {
-      localStorage.setItem('productsList', JSON.stringify(localStorageList));
-    }
   }
 
   onSearchTextChange(event) {
@@ -76,9 +73,45 @@ class Home extends React.Component {
     });
   }
 
+  saveStorage({ target }) {
+    const oneNegative = -1;
+    const twoPositive = 2;
+    let price = (parseFloat(target.getAttribute('data-price'))).toFixed(twoPositive);
+    const id = target.getAttribute('data-id');
+    const title = target.getAttribute('data-title');
+    const thumbnail = target.getAttribute('data-thumbnail');
+    const availableQuantity = (
+      parseInt(target.getAttribute('data-available-quantity'), 10)
+    );
+    const products = JSON.parse(localStorage.getItem('productsList'));
+    const findIndexInArray = products.findIndex((item) => item.id === id);
+    if (findIndexInArray !== oneNegative) {
+      products[findIndexInArray].quantity += 1;
+      price *= products[findIndexInArray].quantity;
+      products[findIndexInArray].price = price;
+      localStorage.setItem('productsList', JSON.stringify([...products]));
+        this.setState({
+        storage: JSON.parse(localStorage.getItem('productsList')),
+      })
+    } else {
+      const quantity = 1;
+      localStorage.setItem('productsList', JSON.stringify(
+        [...products, { id, title, thumbnail, price, quantity, availableQuantity }],
+      ));
+        this.setState({
+        storage: JSON.parse(localStorage.getItem('productsList')),
+      })
+    }
+  }
+
   render() {
     const { message, productList, categories } = this.state;
     const noProduct = <p>Nenhum produto foi encontrado</p>;
+    const magicNumber = 0;
+    const { storage } = this.state;
+    const itemQuantity = storage.map((item) => item.quantity)
+      .reduce((acc, nextValue) => acc + nextValue, magicNumber);
+    const cartQuantity = (storage) ? itemQuantity : magicNumber;
 
     return (
       <div className="container">
@@ -86,12 +119,13 @@ class Home extends React.Component {
         <SearchBar
           onSearchTextChange={ this.onSearchTextChange }
           onClickAPI={ this.fetchProductsQuery }
+          cartQuantity={ cartQuantity }
         />
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <CategoriesList handleCategories={ this.handleEvent } categories={ categories } />
-        { message ? noProduct : <ProductList products={ productList } /> }
+        { message ? noProduct : <ProductList newStorageState1={ this.saveStorage } products={ productList } /> }
       </div>
     );
   }

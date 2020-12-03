@@ -13,6 +13,7 @@ class ProductDetails extends React.Component {
       loading: true,
       productDetails: [],
       freeShipping: false,
+      storage: JSON.parse(localStorage.getItem('productsList')),
     };
     this.saveStorage = this.saveStorage.bind(this);
     this.fetchProductDetail = this.fetchProductDetail.bind(this);
@@ -39,14 +40,19 @@ class ProductDetails extends React.Component {
       price *= products[findIndexInArray].quantity;
       products[findIndexInArray].price = price;
       localStorage.setItem('productsList', JSON.stringify([...products]));
+      this.setState({
+        storage: JSON.parse(localStorage.getItem('productsList')),
+      })
     } else {
       const quantity = 1;
       localStorage.setItem('productsList', JSON.stringify(
         [...products, { id, title, thumbnail, price, quantity, availableQuantity }],
       ));
+      this.setState({
+        storage: JSON.parse(localStorage.getItem('productsList')),
+      })
     }
   }
-
 
   async fetchProductDetail() {
     const { match } = this.props;
@@ -77,7 +83,7 @@ class ProductDetails extends React.Component {
     const { available_quantity: availableQuantity } = productDetails;
     const { id, title, thumbnail, price } = productDetails;
     const magicNumber = 0;
-    const storage = JSON.parse(localStorage.getItem('productsList'));
+    const { storage } = this.state;
     const itemQuantity = storage.map((item) => item.quantity)
       .reduce((acc, nextValue) => acc + nextValue, magicNumber);
     const cartQuantity = (storage) ? itemQuantity : magicNumber;

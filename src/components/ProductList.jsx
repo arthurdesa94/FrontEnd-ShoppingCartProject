@@ -9,10 +9,10 @@ class ProductList extends React.Component {
     return (
       <div className="product-list">
         { products.map((item) => (<ProductCard
-            newStorageState2={ newStorageState1 }
-            key={ item.id }
-            product={ item }
-          />)) }
+          newStorageState2={ newStorageState1 }
+          key={ item.id }
+          product={ item }
+        />)) }
       </div>
     );
   }

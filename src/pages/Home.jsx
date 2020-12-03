@@ -16,7 +16,6 @@ class Home extends React.Component {
       productList: [],
       categories: [],
       selectedCategory: [],
-      cartQuantity: '',
       storage: JSON.parse(localStorage.getItem('productsList')),
     };
   }
@@ -125,8 +124,8 @@ class Home extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <CategoriesList handleCategories={ this.handleEvent } categories={ categories } />
-        { message ? noProduct :
-        <ProductList newStorageState1={ this.saveStorage } products={ productList } /> }
+        { message ? noProduct
+          : <ProductList newStorageState1={ this.saveStorage } products={ productList } /> }
       </div>
     );
   }

@@ -131,7 +131,7 @@ class Home extends React.Component {
         { message ? noProduct : <ProductList
           newStorageState1={ this.saveStorage }
           products={ productList }
-          /> }
+        /> }
       </div>
     );
   }

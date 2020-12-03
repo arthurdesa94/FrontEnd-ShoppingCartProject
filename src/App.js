@@ -8,8 +8,11 @@ import Checkout from './pages/Checkout';
 import NotFound from './pages/NotFound';
 
 function App() {
-  localStorage.setItem('productsList', JSON.stringify([]));
-  
+  const localStorageObjetcs = JSON.parse(localStorage.getItem('productsList'));
+  if (!localStorageObjetcs) {
+    localStorage.setItem('productsList', JSON.stringify([]));
+  }
+
   return (
     <BrowserRouter>
       <Switch>
